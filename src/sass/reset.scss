@@ -1,0 +1,30 @@
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul, dl, dd {
+    margin: 0;
+    padding: 0;
+}
+body {
+    height: 100%;
+    font-family: $font-family-regular;
+    font-size: 14px;
+    color: $textColor;
+    background-color: $backgroundColor1;
+    -webkit-font-smoothing: antialiased;
+}
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: $colorPrimary;
+    cursor: pointer;
+    outline: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+i {
+    font-style: normal;
+}

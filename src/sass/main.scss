@@ -1,0 +1,26 @@
+.cs-header {
+  width: 100%;
+  background-color: $colorPrimary;
+  line-height: 64px;
+  color: #fff;
+  z-index: 9999;
+}
+.cs-register {
+  .col {
+    min-height: 40px;
+    line-height: 40px;
+    padding-left: 100px;
+  }
+  .col + .col {
+    padding-top: 10px;
+  }
+  .cstitle {
+    float: left;
+    margin-left: -100px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .csinput {
+    display: inline-block;
+  }
+}
