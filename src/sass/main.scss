@@ -5,22 +5,51 @@
   color: #fff;
   z-index: 9999;
 }
-.cs-register {
+.cs-login, .cs-register {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  .comp-header {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+  .bd {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #d8dee2;
+    border-radius: 3px;
+  }
   .col {
-    min-height: 40px;
-    line-height: 40px;
-    padding-left: 100px;
+    margin-bottom: 15px;
   }
-  .col + .col {
-    padding-top: 10px;
+  .title {
+    margin-bottom: 5px;
   }
-  .cstitle {
-    float: left;
-    margin-left: -100px;
-    height: 40px;
-    line-height: 40px;
+  .btn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
   }
-  .csinput {
-    display: inline-block;
+}
+
+.cs-login {
+  width: 332px;
+  height: 400px;
+  margin-left: -160px;
+  margin-top: 200px;
+  .goToRegister {
+    padding: 15px 20px;
+    text-align: center;
+    border: 1px solid #d8dee2;
+    border-radius: 5px;
+    margin-top: 16px
   }
+}
+
+.cs-register {
+  width: 332px;
+  height: 400px;
+  margin-left: -200px;
+  margin-top: 200px;
 }

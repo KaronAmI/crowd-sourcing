@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-header class="cs-header" height="64px">众包任务管理系统</el-header>
-      <el-main>
-        <router-view/>
-      </el-main>
-    </el-container>
+    <router-view/>
   </div>
 </template>
 
