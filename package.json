@@ -15,7 +15,6 @@
     "koa": "^2.5.0",
     "koa-json": "^2.0.2",
     "koa-router": "^7.4.0",
-    "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "normalize.css": "^8.0.0",
     "sequelize": "^4.37.6",

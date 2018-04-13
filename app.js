@@ -1,11 +1,14 @@
 const Koa = require('koa')
-const Router = require('koa-router')()
-const Auth = require('./server/routes/auth.js')
+const Router = require('koa-router')
+const user = require('./server/actions/user.js')
+
 const app = new Koa()
+const router = new Router()
 
-// koa.use('/auth', auth.routes())
-// app.use(koa.routes()) // 将路由规则挂载到Koa上。
+router.get('/users', user.getUsers) 
 
-app.listen(3000,() => {
-  console.log('Koa is listening in 8889')
+app.use(router.routes()) 
+
+app.listen(3000, () => {
+  console.log('koa is listening in 3000')
 })
