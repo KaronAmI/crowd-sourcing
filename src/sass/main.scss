@@ -1,3 +1,6 @@
+.cs {
+  height: 100%;
+}
 .cs-header {
   width: 100%;
   background-color: $colorPrimary;
@@ -6,13 +9,15 @@
   z-index: 9999;
 }
 .cs-login, .cs-register {
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
+  width: 332px;
+  margin-left: -160px;
   .comp-header {
     text-align: center;
     font-size: 26px;
-    margin-bottom: 30px;
+    padding: 30px 0;
   }
   .bd {
     padding: 20px;
@@ -31,14 +36,10 @@
     width: 100%;
     margin-top: 20px;
   }
-}
-
-.cs-login {
-  width: 332px;
-  height: 400px;
-  margin-left: -160px;
-  margin-top: 200px;
-  .goToRegister {
+  .csselect {
+    width: 100%;
+  }
+  .goto {
     padding: 15px 20px;
     text-align: center;
     border: 1px solid #d8dee2;
@@ -47,9 +48,12 @@
   }
 }
 
-.cs-register {
-  width: 332px;
+.cs-login {
   height: 400px;
-  margin-left: -200px;
-  margin-top: 200px;
+  margin-top: -200px;
+}
+
+.cs-register {
+  height: 560px;
+  margin-top: -280px;
 }
