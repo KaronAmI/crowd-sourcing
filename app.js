@@ -5,7 +5,8 @@ const user = require('./server/actions/user.js')
 const app = new Koa()
 const router = new Router()
 
-router.get('/users', user.getUsers) 
+router.get('/users', user.getUsers)
+router.get('/users/:name', user.getUserByName)
 
 app.use(router.routes()) 
 

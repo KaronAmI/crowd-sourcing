@@ -16,5 +16,5 @@ const cs = new Sequelize('cs', 'root', '123456', {
 })
 
 module.exports = {
-  cs // 将Todolist暴露出接口方便Model调用
+  cs
 }
