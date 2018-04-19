@@ -1,5 +1,5 @@
 const db = require('../config/db.js')
-const userModel = '../schema/user.js'
+const userModel = '../schema/users.js'
 const CsDb = db.cs
 
 const User = CsDb.import(userModel)
@@ -17,7 +17,20 @@ const getUserByName = async function (name) {
   return user
 }
 
+const addUser = async function (user) {
+  await User.create({
+    name: user.name,
+    email: user.email,
+    type: user.type,
+    password: user.password
+  })
+  return {
+    msg: '注册成功'
+  }
+}
+
 module.exports = {
   getUsers,
-  getUserByName
+  getUserByName,
+  addUser
 }

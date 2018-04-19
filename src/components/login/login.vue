@@ -1,6 +1,6 @@
 <template>
   <div class="cs-login">
-    <lrheader></lrheader>
+    <top></top>
     <div class="bd">
       <div class="col">
         <div class="title">邮箱</div>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import lrheader from './lrheader'
+import top from './top'
 export default {
   name: 'login',
   data () {
@@ -31,7 +31,7 @@ export default {
     }
   },
   components: {
-    lrheader
+    top
   }
 }
 </script>

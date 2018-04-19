@@ -1,10 +1,10 @@
 <template>
   <div class="cs-register">
-    <lrheader></lrheader>
+    <top></top>
     <div class="bd">
       <div class="col">
         <div class="title">昵称</div>
-        <el-input placeholder="请输入昵称" v-model="email" clearable></el-input>
+        <el-input placeholder="请输入昵称" v-model="name" clearable></el-input>
       </div>
       <div class="col">
         <div class="title">邮箱</div>
@@ -16,13 +16,13 @@
       </div>
       <div class="col">
         <div class="title">类型</div>
-        <el-select class="csselect" v-model="userType" placeholder="请选择类型">
-          <el-option value="我是发包方" label="我是发包方"></el-option>
-          <el-option value="我是测试方" label="我是测试方"></el-option>
+        <el-select class="csselect" v-model="type" placeholder="请选择类型">
+          <el-option value="customer" label="我是发包方"></el-option>
+          <el-option value="tester" label="我是测试方"></el-option>
         </el-select>
       </div>
       <div class="col">
-        <el-button type="primary" class="btn">注册</el-button>
+        <el-button type="primary" class="btn" @click="addUser" :loading="loading">注册</el-button>
       </div>
     </div>
 
@@ -33,22 +33,41 @@
 </template>
 
 <script>
-import lrheader from './lrheader'
+import top from './top'
 export default {
   name: 'register',
   data () {
     return {
+      name: '',
       email: '',
       password: '',
-      userType: ''
+      type: '',
+      loading: false
     }
   },
   components: {
-    lrheader
+    top
+  },
+  computed: {
+    addUserResult () {
+      return this.$store.getters.doneAddUser
+    }
+  },
+  methods: {
+    async addUser () {
+      this.loading = true
+      const send = {}
+      send.name = this.name
+      send.email = this.email
+      send.password = this.password
+      send.type = this.type
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'addUser', params: send})
+      this.$message({
+        message: this.addUserResult.msg,
+        type: 'success'
+      })
+      this.loading = false
+    }
   }
 }
 </script>
-
-<style>
-
-</style>

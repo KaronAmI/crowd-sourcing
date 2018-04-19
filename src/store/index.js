@@ -7,7 +7,10 @@ import getters from './getters'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    addUser: '',
+    users: ''
+  },
   mutations,
   actions,
   getters

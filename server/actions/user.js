@@ -12,7 +12,15 @@ const getUserByName = async function (ctx) {
   ctx.body = result
 }
 
+const addUser = async function (ctx) {
+  const send = ctx.request.body
+  console.log(send)
+  const result = await user.addUser(send)
+  ctx.body = result
+}
+
 module.exports = {
   getUsers,
-  getUserByName
+  getUserByName,
+  addUser
 }
