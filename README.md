@@ -1,21 +1,16 @@
 # crowd-sourcing
+> vue构建的一个小项目
 
-> A Vue.js project
+## 进度安排
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+~~第 0 期：数据库搭建~~
+~~第 1 期：数据库表设计~~
+~~第 2 期：前后端基本底层的搭建~~
+第 3 期：登录注册模块
+第 4 期：用户管理模块
+第 5 期：设备模块
+第 6 期：项目模块
+第 7 期：奖励模块
+第 8 期：缺陷报告模块
+第 9 期：测试报告模块
+第 10 期: 上传下载模块
