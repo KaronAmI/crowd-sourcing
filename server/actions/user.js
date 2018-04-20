@@ -2,25 +2,24 @@ const user = require('../models/user.js')
 
 const getUsers = async function (ctx) {
   const id = ctx.params.id
-  const result = await user.getUsers(id) 
+  const result = await user.getUsers(id)
   ctx.body = result
 }
 
-const getUserByName = async function (ctx) {
-  const name = ctx.params.name
-  const result = await user.getUserByName(name)
+const getUserByEmail = async function (ctx) {
+  const login = ctx.request.body
+  const result = await user.getUserByEmail(login)
   ctx.body = result
 }
 
 const addUser = async function (ctx) {
   const send = ctx.request.body
-  console.log(send)
   const result = await user.addUser(send)
   ctx.body = result
 }
 
 module.exports = {
   getUsers,
-  getUserByName,
+  getUserByEmail,
   addUser
 }

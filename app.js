@@ -8,10 +8,10 @@ const router = new Router()
 
 app.use(bodyParser())
 router.get('/crowd-sourcing/users', user.getUsers)
-router.get('/crowd-sourcing/users/:name', user.getUserByName)
-router.post('/crowd-sourcing/users/addUser', user.addUser)
+router.post('/crowd-sourcing/users/login', user.getUserByEmail)
+router.post('/crowd-sourcing/users/register', user.addUser)
 
-app.use(router.routes()) 
+app.use(router.routes())
 
 app.listen(3000, () => {
   console.log('koa is listening in 3000')

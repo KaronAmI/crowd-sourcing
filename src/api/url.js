@@ -9,10 +9,10 @@ export const findApi = (type) => {
   let url = ''
   switch (type) {
     case 'addUser':
-      url = `${host}/crowd-sourcing/users/addUser`
+      url = `${host}/crowd-sourcing/users/register`
       break
-    case 'users':
-      url = `${host}/crowd-sourcing/users`
+    case 'login':
+      url = `${host}/crowd-sourcing/users/login`
       break
   }
   return url

@@ -1,3 +1,4 @@
 export default {
-  doneAddUser: state => state.addUser
+  doneAddUser: state => state.addUser,
+  doneLogin: state => state.login
 }

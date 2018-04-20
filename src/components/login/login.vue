@@ -10,7 +10,7 @@
         <div class="title">密码</div>
         <el-input type="password" placeholder="请输入密码" v-model="password" clearable></el-input>
       </div>
-      <el-button type="primary" class="btn">登录</el-button>
+      <el-button type="primary" class="btn" @click="login" :loading="loading">登录</el-button>
     </div>
 
     <div class="goto">
@@ -20,18 +20,40 @@
 </template>
 
 <script>
-import top from './top'
+import top from '@/components/login/top'
+import router from '@/router'
+
 export default {
   name: 'login',
   data () {
     return {
       email: '',
       password: '',
-      userType: ''
+      loading: false
     }
   },
   components: {
     top
+  },
+  computed: {
+    donelogin () {
+      return this.$store.getters.doneLogin
+    }
+  },
+  methods: {
+    async login () {
+      this.loading = true
+      const send = {}
+      send.email = this.email
+      send.password = this.password
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'login', params: send})
+      if (this.donelogin.isUser) {
+        router.push({path: '/cs/'})
+      } else {
+        this.$message.error(this.donelogin.msg)
+      }
+      this.loading = false
+    }
   }
 }
 </script>

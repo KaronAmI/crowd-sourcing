@@ -8,13 +8,23 @@ const getUsers = async function () {
   return await User.findAll()
 }
 
-const getUserByName = async function (name) {
+const getUserByEmail = async function (login) {
   const user = await User.findOne({
     where: {
-      email: name
+      email: login.email
     }
   })
-  return user
+  if (user.password === login.password ) {
+    return {
+      isUser: true,
+      msg: ''
+    }
+  } else {
+    return {
+      isUser: false,
+      msg: '邮箱或密码错误'
+    }
+  }
 }
 
 const addUser = async function (user) {
@@ -31,6 +41,6 @@ const addUser = async function (user) {
 
 module.exports = {
   getUsers,
-  getUserByName,
+  getUserByEmail,
   addUser
 }
