@@ -8,11 +8,11 @@ const host = process.env.NODE_ENV === 'production' ? window.location.origin : ''
 export const findApi = (type) => {
   let url = ''
   switch (type) {
-    case 'addUser':
-      url = `${host}/crowd-sourcing/users/register`
+    case 'register':
+      url = `${host}/api/users/register`
       break
     case 'login':
-      url = `${host}/crowd-sourcing/users/login`
+      url = `${host}/api/users/login`
       break
   }
   return url

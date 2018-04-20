@@ -7,9 +7,9 @@ const app = new Koa()
 const router = new Router()
 
 app.use(bodyParser())
-router.get('/crowd-sourcing/users', user.getUsers)
-router.post('/crowd-sourcing/users/login', user.getUserByEmail)
-router.post('/crowd-sourcing/users/register', user.addUser)
+router.get('/api/users', user.getUsers)
+router.post('/api/users/login', user.getUserByEmail)
+router.post('/api/users/register', user.addUser)
 
 app.use(router.routes())
 

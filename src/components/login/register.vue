@@ -49,8 +49,8 @@ export default {
     top
   },
   computed: {
-    addUserResult () {
-      return this.$store.getters.doneAddUser
+    doneRegister () {
+      return this.$store.getters.doneRegister
     }
   },
   methods: {
@@ -61,9 +61,9 @@ export default {
       send.email = this.email
       send.password = this.password
       send.type = this.type
-      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'addUser', params: send})
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'register', params: send})
       this.$message({
-        message: this.addUserResult.msg,
+        message: this.doneRegister.msg,
         type: 'success'
       })
       this.loading = false
