@@ -1,5 +1,5 @@
 <template>
-  <el-card class="cs-device-card cs-device-add" :body-style="{'padding': '0'}">
+  <el-card class="cs-card cs-card-add" :body-style="{'padding': '0'}">
     <section class="device-header">添加设备</section>
     <section class="device-main">
       <div class="device-col">

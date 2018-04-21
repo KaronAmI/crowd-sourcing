@@ -12,7 +12,7 @@ export default new Vuex.Store({
       id: 9,
       isUser: true,
       msg: '',
-      type: 'tester'
+      type: 'customer'
     },
     addDevice: '',
     deviceForTester: '',

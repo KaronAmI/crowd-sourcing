@@ -84,7 +84,7 @@
   padding-left: 220px;
 }
 
-.cs-device-card {
+.cs-card {
   margin-bottom: 20px;
   .device-header {
     padding: 12px 20px;
@@ -95,7 +95,7 @@
   }
 }
 
-.cs-device-add {
+.cs-card-add {
   .device-col {
     line-height: 40px;
     .name, .value {
@@ -113,5 +113,18 @@
   }
   .device-col + .device-col {
     margin-top: 10px;
+  }
+}
+
+.cs-project-steps {
+  padding: 20px;
+  border-bottom: 1px solid $borderColor0;
+}
+
+.cs-project-main {
+  padding-bottom: 0;
+
+  .project-time-picker {
+    width: 100% !important;
   }
 }
