@@ -12,13 +12,21 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(50),
       allowNull: true
     },
-    version: {
+    os: {
+      type: DataTypes.STRING(50),
+      allowNull: true
+    },
+    osVersion: {
       type: DataTypes.STRING(50),
       allowNull: true
     },
     manufacturer: {
       type: DataTypes.STRING(50),
       allowNull: true
+    },
+    testerId: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false
     }
   }, {
     tableName: 'devices'

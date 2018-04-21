@@ -2,11 +2,28 @@
   height: 100%;
 }
 .cs-header {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-color: $colorPrimary;
-  line-height: 64px;
+  background-color: $blue;
+  line-height: 60px;
   color: #fff;
-  z-index: 9999;
+  z-index: 999;
+
+  h1 {
+    font-size: 16px;
+  }
+}
+.cs-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 60px;
+  height: 100%;
+  .cs-nav-menu {
+    height: 100%;
+  }
 }
 .cs-login, .cs-register {
   position: absolute;
@@ -56,4 +73,41 @@
 .cs-register {
   height: 560px;
   margin-top: -280px;
+}
+
+.cs-main {
+  padding-top: 80px;
+  padding-left: 220px;
+}
+
+.cs-device-card {
+  margin-bottom: 20px;
+  .device-header {
+    padding: 12px 20px;
+    border-bottom: 1px solid $borderColor0;
+  }
+  .device-main {
+    padding: 20px;
+  }
+}
+
+.cs-device-add {
+  .device-col {
+    line-height: 40px;
+    .name, .value {
+      display: inline-block;
+    }
+    .name {
+      width: 80px;
+    }
+    .value {
+      width: 400px;
+    }
+    .el-select {
+      width: 100%;
+    }
+  }
+  .device-col + .device-col {
+    margin-top: 10px;
+  }
 }

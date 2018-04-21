@@ -64,7 +64,7 @@ export default {
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'register', params: send})
       this.$message({
         message: this.doneRegister.msg,
-        type: 'success'
+        type: this.doneRegister.error ? 'error' : 'success'
       })
       this.loading = false
     }

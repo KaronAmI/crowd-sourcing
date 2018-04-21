@@ -8,7 +8,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    login: '',
+    login: {
+      id: 9,
+      isUser: true,
+      msg: '',
+      type: 'tester'
+    },
+    addDevice: '',
+    deviceForTester: '',
+    delDeviceByDeviceId: '',
     register: ''
   },
   mutations,

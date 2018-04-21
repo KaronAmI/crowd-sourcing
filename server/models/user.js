@@ -8,34 +8,33 @@ const getUsers = async function () {
   return await User.findAll()
 }
 
-const getUserByEmail = async function (login) {
+const getUserByEmail = async function (obj) {
   const user = await User.findOne({
     where: {
-      email: login.email
+      email: obj.email
     }
   })
-  if (user.password === login.password ) {
-    return {
-      isUser: true,
-      msg: ''
-    }
-  } else {
-    return {
-      isUser: false,
-      msg: '邮箱或密码错误'
-    }
-  }
+  return user
 }
 
 const addUser = async function (user) {
-  await User.create({
-    name: user.name,
-    email: user.email,
-    type: user.type,
-    password: user.password
-  })
-  return {
-    msg: '注册成功'
+  const existingUser = await getUserByEmail(user)
+  if (existingUser) {
+    return {
+      error: true,
+      msg: '邮箱已存在'
+    }
+  } else {
+    await User.create({
+      name: user.name,
+      email: user.email,
+      type: user.type,
+      password: user.password
+    })
+    return {
+      error: false,
+      msg: '注册成功'
+    }
   }
 }
 

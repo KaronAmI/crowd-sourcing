@@ -14,6 +14,15 @@ export const findApi = (type) => {
     case 'login':
       url = `${host}/api/users/login`
       break
+    case 'addDevice':
+      url = `${host}/api/devices/addDevice`
+      break
+    case 'deviceForTester':
+      url = `${host}/api/devices/deviceForTester`
+      break
+    case 'delDeviceByDeviceId':
+      url = `${host}/api/devices/delDeviceByDeviceId`
+      break
   }
   return url
 }
