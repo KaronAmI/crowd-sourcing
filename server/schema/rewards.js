@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     projectId: {
       type: DataTypes.INTEGER(11),
-      allowNull: true
+      allowNull: false
     },
     grade: {
       type: DataTypes.INTEGER(11),
