@@ -16,5 +16,8 @@ export default {
   },
   delRewards ({commit}, {data}) {
     return commit('delRewards', {data})
+  },
+  setState ({commit}, {type, data}) {
+    commit('setState', {type, data})
   }
 }

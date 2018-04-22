@@ -60,8 +60,33 @@ const addProject = async (obj) => {
   }
 }
 
+const updateProjectById = async (obj) => {
+  await Project.update(
+    {
+      name: obj.name, 
+      start: obj.start, 
+      end: obj.end, 
+      os: obj.os, 
+      osVersion: obj.osVersion, 
+      phoneName: obj.phoneName, 
+      testerNumber: obj.testerNumber, 
+      isExamine: obj.isExamine, 
+      customerId: obj.customerId
+    }, {
+      where: {
+        id: obj.id
+      }
+    }
+  )
+  return {
+    msg: '更新成功',
+    error: false
+  }
+}
+
 module.exports = {
   getProjectsByCustomerId,
   getProjectByName,
-  addProject
+  addProject,
+  updateProjectById
 }

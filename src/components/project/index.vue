@@ -2,7 +2,7 @@
   <div>
     <list></list>
     <add></add>
-    <preview></preview>
+    <preview v-if="doneProject"></preview>
   </div>
 </template>
 
@@ -16,6 +16,14 @@ export default {
     list,
     add,
     preview
+  },
+  computed: {
+    customerId () {
+      return this.$store.getters.doneLogin.id
+    },
+    doneProject () {
+      return this.$store.getters.doneProject
+    }
   }
 }
 </script>

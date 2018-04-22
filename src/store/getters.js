@@ -6,5 +6,6 @@ export default {
   doneDelDeviceByDeviceId: state => state.delDeviceByDeviceId,
   doneProject: state => state.project,
   doneRewards: state => state.rewards,
-  doneProjectsForCustomer: state => state.projectsForCustomer
+  doneProjectsForCustomer: state => state.projectsForCustomer,
+  doneUpdateProject: state => state.updateProject
 }

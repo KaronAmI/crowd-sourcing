@@ -10,8 +10,14 @@ const addProject = async function (ctx) {
   const result = await project.addProject(send)
   ctx.body = result
 }
+const updateProjectById = async function (ctx) {
+  const send = ctx.request.body
+  const result = await project.updateProjectById(send)
+  ctx.body = result
+}
 module.exports = {
   addProject,
-  getProjectsByCustomerId
+  getProjectsByCustomerId,
+  updateProjectById
 }
   

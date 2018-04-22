@@ -55,7 +55,8 @@
 
       <div class="device-col">
         <div class="title"></div>
-        <el-button plain size="mini" @click="addProject">保存基本信息至草稿</el-button>
+        <el-button plain size="mini" @click="updateProject" v-if="id">更新基本信息至草稿</el-button>
+        <el-button plain size="mini" @click="addProject" v-else>保存基本信息至草稿</el-button>
       </div>
     </section>
   </section>
@@ -66,14 +67,17 @@
 export default {
   name: 'projectInfo',
   data () {
+    const projectTemp = this.$store.getters.doneProject
+    const testTime = [projectTemp.start, projectTemp.end]
     return {
-      name: '',
-      description: '',
-      testTime: '',
-      testerNumber: '',
-      os: '',
-      osVersion: '',
-      phoneName: '',
+      id: projectTemp.id || '',
+      name: projectTemp.name || '',
+      description: projectTemp.description || '',
+      testTime: testTime || '',
+      testerNumber: projectTemp.testerNumber || '',
+      os: projectTemp.os || '',
+      osVersion: projectTemp.osVersion || '',
+      phoneName: projectTemp.phoneName || '',
       isExamine: true
     }
   },
@@ -83,6 +87,9 @@ export default {
     },
     doneProject () {
       return this.$store.getters.doneProject
+    },
+    doneUpdateProject () {
+      return this.$store.getters.doneUpdateProject
     }
   },
   methods: {
@@ -99,16 +106,39 @@ export default {
       project.testerNumber = this.testerNumber
       project.isExamine = this.isExamine
       project.isPublish = false
-      await this.$store.dispatch('setProject', {type: 'project', data: project})
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'project', params: project})
-
+      await this.$store.dispatch('setProject', {type: 'project', data: project})
+      this.showMsg(this.doneProject)
+      this.refresh()
+    },
+    async updateProject () {
+      const project = {}
+      project.id = this.id
+      project.name = this.name
+      project.customerId = this.customerId
+      project.description = this.description
+      project.start = this.testTime[0]
+      project.end = this.testTime[1]
+      project.os = this.os
+      project.osVersion = this.osVersion
+      project.phoneName = this.phoneName
+      project.testerNumber = this.testerNumber
+      project.isExamine = this.isExamine
+      project.isPublish = false
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'updateProject', params: project})
+      await this.$store.dispatch('setProject', {type: 'project', data: project})
+      this.showMsg(this.doneUpdateProject)
+      this.refresh()
+    },
+    async refresh () {
       const send = {}
       send.customerId = this.customerId
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'projectsForCustomer', params: send})
-      
+    },
+    showMsg (msg) {
       this.$message({
-        message: this.doneProject.msg,
-        type: this.doneProject.error ? 'error' : 'success'
+        message: msg.msg,
+        type: msg.error ? 'error' : 'success'
       })
     }
   }

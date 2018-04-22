@@ -20,6 +20,7 @@ router.post('/api/devices/delDeviceByDeviceId', device.delDeviceByDeviceId)
 
 router.post('/api/project/addProject', project.addProject)
 router.post('/api/project/getProjectsByCustomerId', project.getProjectsByCustomerId)
+router.post('/api/project/updateProjectById', project.updateProjectById)
 
 app.use(router.routes())
 

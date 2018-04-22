@@ -1,5 +1,5 @@
 <template>
-  <el-card class="cs-card cs-card-add" :body-style="{'padding': '0'}">
+  <el-card class="cs-card cs-card-add" :body-style="{'padding': '0'}" v-if="doneProject">
     <el-steps class="cs-project-steps" :active="active" finish-status="success">
       <el-step title="步骤 1" description="填写项目基本信息"></el-step>
       <el-step title="步骤 2" description="设置奖励信息"></el-step>
@@ -32,11 +32,16 @@ export default {
   components: {
     info,
     reward,
-    upload,
+    upload
   },
   data () {
     return {
       active: 1
+    }
+  },
+  computed: {
+    doneProject () {
+      return this.$store.getters.doneProject
     }
   },
   methods: {
