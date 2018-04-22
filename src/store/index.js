@@ -17,7 +17,10 @@ export default new Vuex.Store({
     addDevice: '',
     deviceForTester: '',
     delDeviceByDeviceId: '',
-    register: ''
+    register: '',
+    project: {},
+    projectsForCustomer: '',
+    rewards: []
   },
   mutations,
   actions,

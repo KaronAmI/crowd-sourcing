@@ -23,6 +23,12 @@ export const findApi = (type) => {
     case 'delDeviceByDeviceId':
       url = `${host}/api/devices/delDeviceByDeviceId`
       break
+    case 'project':
+      url = `${host}/api/project/addProject`
+      break
+    case 'projectsForCustomer':
+      url = `${host}/api/project/getProjectsByCustomerId`
+      break
   }
   return url
 }

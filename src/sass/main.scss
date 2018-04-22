@@ -68,22 +68,18 @@
     margin-top: 16px
   }
 }
-
 .cs-login {
   height: 400px;
   margin-top: -200px;
 }
-
 .cs-register {
   height: 560px;
   margin-top: -280px;
 }
-
 .cs-main {
   padding-top: 80px;
   padding-left: 220px;
 }
-
 .cs-card {
   margin-bottom: 20px;
   .device-header {
@@ -94,18 +90,27 @@
     padding: 20px;
   }
 }
-
 .cs-card-add {
   .device-col {
-    line-height: 40px;
+    position: relative;
+    padding-left: 108px;
     .name, .value {
       display: inline-block;
     }
     .name {
-      width: 80px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 40px;
+      line-height: 40px;
+      width: 108px;
     }
     .value {
       width: 400px;
+    }
+    .single {
+      height: 40px;
+      line-height: 40px;
     }
     .el-select {
       width: 100%;
@@ -115,16 +120,85 @@
     margin-top: 10px;
   }
 }
-
 .cs-project-steps {
-  padding: 20px;
+  padding: 30px 40px 27px;
   border-bottom: 1px solid $borderColor0;
 }
-
 .cs-project-main {
   padding-bottom: 0;
-
   .project-time-picker {
     width: 100% !important;
+  }
+}
+.cs-project-footer {
+  padding: 10px 40px 20px;
+  border-top: 1px solid $borderColor0;
+}
+.cs-reward {
+  padding: 20px;
+  section + section {
+    margin-top: 20px;
+  }
+  .top {
+    border-left: 4px solid $blue;
+    padding-left: 16px;
+    margin-bottom: 20px;
+  }
+  .col {
+    width: 500px;
+    .title, .select, .input {
+      display: inline-block;
+    }
+    .title {
+      width: 50px;
+    }
+    .select, .input {
+      width: 400px;
+    }
+  }
+  .col + .col {
+    margin-top: 10px;
+  }
+}
+
+.cs-card-preview {
+  .part {
+    margin: 20px 40px;
+  }
+  .header {
+    padding: 20px 40px;
+    border-bottom: 1px solid $borderColor0;
+  }
+  .title {
+    padding-left: 20px;
+    border-left: 4px solid $blue;
+    margin-bottom: 20px;
+  }
+  .demand {
+    position: relative;
+    padding-left: 108px;
+    width: 500px;
+    .name {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 40px;
+      line-height: 40px;
+      width: 108px;
+    }
+    .single {
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+}
+
+.cs-card-list {
+  .header {
+    padding: 20px 40px;
+    border-bottom: 1px solid $borderColor0;
+  }
+  .bd {
+    padding: 20px 40px;
   }
 }

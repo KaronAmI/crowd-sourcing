@@ -24,12 +24,20 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    reward: {
-      type: DataTypes.STRING(255),
+    rewardId: {
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
-    device: {
-      type: DataTypes.STRING(255),
+    os: {
+      type: DataTypes.STRING(50),
+      allowNull: true
+    },
+    osVersion: {
+      type: DataTypes.STRING(50),
+      allowNull: true
+    },
+    phoneName: {
+      type: DataTypes.STRING(50),
       allowNull: true
     },
     start: {
@@ -45,6 +53,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     isExamine: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true
+    },
+    isPublish: {
       type: DataTypes.INTEGER(1),
       allowNull: true
     }
