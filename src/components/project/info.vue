@@ -3,16 +3,16 @@
     <section class="device-main">
       <div class="device-col">
         <div class="name">项目名称：</div>
-        <div class="value single"><el-input v-model="name" clearable></el-input></div>
+        <div class="value single"><el-input :disabled="isDisabled" v-model="name" clearable></el-input></div>
       </div>
       <div class="device-col">
         <div class="name">手机名要求：</div>
-        <div class="value single"><el-input v-model="phoneName" clearable></el-input></div>
+        <div class="value single"><el-input :disabled="isDisabled" v-model="phoneName" clearable></el-input></div>
       </div>
       <div class="device-col">
         <div class="name">系统要求：</div>
         <div class="value single">
-          <el-select v-model="os" placeholder="请选择">
+          <el-select :disabled="isDisabled" v-model="os" placeholder="请选择">
             <el-option label="android" value="android"></el-option>
             <el-option label="ios" value="ios"></el-option>
           </el-select>
@@ -20,22 +20,23 @@
       </div>
       <div class="device-col">
         <div class="name">系统版本要求：</div>
-        <div class="value single"><el-input v-model="osVersion" clearable></el-input></div>
+        <div class="value single"><el-input :disabled="isDisabled" v-model="osVersion" clearable></el-input></div>
       </div>
       <div class="device-col">
         <div class="name">项目描述：</div>
         <div class="value">
-          <el-input type="textarea" :rows='3' v-model="description" resize="none"></el-input>
+          <el-input :disabled="isDisabled" type="textarea" :rows='3' v-model="description" resize="none"></el-input>
         </div>
       </div>
       <div class="device-col">
         <div class="name">测试人数：</div>
-        <div class="value single"><el-input v-model="testerNumber" clearable></el-input></div>
+        <div class="value single"><el-input :disabled="isDisabled" v-model="testerNumber" clearable></el-input></div>
       </div>
       <div class="device-col">
         <div class="name">测试时间：</div>
         <div class="value single">
           <el-date-picker
+            :disabled="isDisabled"
             class="project-time-picker"
             v-model="testTime"
             type="daterange"
@@ -48,15 +49,15 @@
       <div class="device-col">
         <div class="name">是否审核：</div>
         <div class="value single">
-          <el-radio v-model="isExamine" :label="true">是</el-radio>
-          <el-radio v-model="isExamine" :label="false">否</el-radio>
+          <el-radio :disabled="isDisabled" v-model="isExamine" :label="true">是</el-radio>
+          <el-radio :disabled="isDisabled" v-model="isExamine" :label="false">否</el-radio>
         </div>
       </div>
 
       <div class="device-col">
         <div class="title"></div>
-        <el-button plain size="mini" @click="updateProject" v-if="id">更新基本信息至草稿</el-button>
-        <el-button plain size="mini" @click="addProject" v-else>保存基本信息至草稿</el-button>
+        <el-button :disabled="isDisabled" plain size="mini" @click="updateProject" v-if="id">更新基本信息至草稿</el-button>
+        <el-button :disabled="isDisabled" plain size="mini" @click="addProject" v-else>保存基本信息至草稿</el-button>
       </div>
     </section>
   </section>
@@ -82,6 +83,9 @@ export default {
     }
   },
   computed: {
+    isDisabled () {
+      return this.doneProject.isPublish ? true : false
+    },
     customerId () {
       return this.$store.getters.doneLogin.id
     },
@@ -90,6 +94,19 @@ export default {
     },
     doneUpdateProject () {
       return this.$store.getters.doneUpdateProject
+    }
+  },
+  watch: {
+    doneProject (val) {
+      const testTime = [val.start, val.end]
+      this.id = val.id
+      this.name = val.name
+      this.description = val.description
+      this.testTime = testTime
+      this.testerNumber = val.testerNumber
+      this.os = val.os
+      this.osVersion = val.osVersion
+      this.phoneName = val.phoneName
     }
   },
   methods: {
@@ -106,8 +123,8 @@ export default {
       project.testerNumber = this.testerNumber
       project.isExamine = this.isExamine
       project.isPublish = false
-      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'project', params: project})
       await this.$store.dispatch('setProject', {type: 'project', data: project})
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'project', params: project})
       this.showMsg(this.doneProject)
       this.refresh()
     },

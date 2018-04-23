@@ -4,6 +4,13 @@ const CsDb = db.cs
 
 const Project = CsDb.import(projectModel)
 
+const delProjectByProjectId = async (obj) => {
+  return await Project.findOne({
+    where: {
+      id: obj.projectId
+    }
+  })
+}
 const getProjectsByCustomerId = async (obj) => {
   return await Project.findAll({
     where: {
@@ -11,7 +18,6 @@ const getProjectsByCustomerId = async (obj) => {
     }
   })
 }
-
 const getProjectByName = async (obj) => {
   const project = await Project.findOne({
     where: {
@@ -61,16 +67,15 @@ const addProject = async (obj) => {
 }
 
 const updateProjectById = async (obj) => {
-  await Project.update(
-    {
-      name: obj.name, 
-      start: obj.start, 
-      end: obj.end, 
-      os: obj.os, 
-      osVersion: obj.osVersion, 
-      phoneName: obj.phoneName, 
-      testerNumber: obj.testerNumber, 
-      isExamine: obj.isExamine, 
+  await Project.update({
+      name: obj.name,
+      start: obj.start,
+      end: obj.end,
+      os: obj.os,
+      osVersion: obj.osVersion,
+      phoneName: obj.phoneName,
+      testerNumber: obj.testerNumber,
+      isExamine: obj.isExamine,
       customerId: obj.customerId
     }, {
       where: {
@@ -84,9 +89,26 @@ const updateProjectById = async (obj) => {
   }
 }
 
+const publish = async (obj) => {
+  await Project.update({
+      isPublish: obj.isPublish,
+      releaseTime: new Date()
+    }, {
+      where: {
+        id: obj.id
+      }
+    }
+  )
+  return {
+    msg: '发布成功',
+    error: false
+  }
+}
 module.exports = {
+  delProjectByProjectId,
   getProjectsByCustomerId,
   getProjectByName,
   addProject,
-  updateProjectById
+  updateProjectById,
+  publish
 }

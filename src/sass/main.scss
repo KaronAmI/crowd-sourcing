@@ -90,6 +90,11 @@
     padding: 20px;
   }
 }
+.cs-project-index {
+  .index-addNew {
+    margin-bottom: 20px;
+  }
+}
 .cs-card-add {
   .device-col {
     position: relative;
@@ -119,16 +124,16 @@
   .device-col + .device-col {
     margin-top: 10px;
   }
+  .card-add-main {
+    padding-bottom: 0;
+    .project-time-picker {
+      width: 100% !important;
+    }
+  }
 }
 .cs-project-steps {
   padding: 30px 40px 27px;
   border-bottom: 1px solid $borderColor0;
-}
-.cs-project-main {
-  padding-bottom: 0;
-  .project-time-picker {
-    width: 100% !important;
-  }
 }
 .cs-project-footer {
   padding: 10px 40px 20px;

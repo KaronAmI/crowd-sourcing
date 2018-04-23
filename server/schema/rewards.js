@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     grade: {
-      type: DataTypes.INTEGER(11),
+      type: DataTypes.STRING(11),
       allowNull: true
     },
     reward: {

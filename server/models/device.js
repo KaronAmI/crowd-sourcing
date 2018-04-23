@@ -5,7 +5,6 @@ const CsDb = db.cs
 const Device = CsDb.import(deviceModel)
 
 const delDeviceByDeviceId = async (obj) => {
-  console.log(obj)
   const device = await Device.findOne({
     where: {
       id: obj.deviceId

@@ -1,11 +1,11 @@
 <template>
-  <el-card class="cs-card cs-card-add" :body-style="{'padding': '0'}" v-if="doneProject">
+  <el-card class="cs-card cs-card-add" :body-style="{'padding': '0'}">
     <el-steps class="cs-project-steps" :active="active" finish-status="success">
       <el-step title="步骤 1" description="填写项目基本信息"></el-step>
       <el-step title="步骤 2" description="设置奖励信息"></el-step>
       <el-step title="步骤 3" description="上传测试包"></el-step>
     </el-steps>
-    <el-main class="cs-project-main">
+    <el-main class="card-add-main">
       <div class="project-step" v-if="active === 1">
         <info></info>
       </div>

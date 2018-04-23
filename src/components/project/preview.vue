@@ -40,19 +40,19 @@
     <div class="part">
       <div class="title">奖励信息</div>
       <div class="table">
-          <el-table
-          :data="rewardList"
+        <el-table
+          :data="doneRewards"
           border
           style="width: 100%">
           <el-table-column
-              prop="grade"
-              label="等级">
+            prop="grade"
+            label="等级">
           </el-table-column>
           <el-table-column
-              prop="reward"
-              label="奖励">
+            prop="reward"
+            label="奖励">
           </el-table-column>
-          </el-table>
+        </el-table>
       </div>
     </div>
   </el-card>
@@ -64,11 +64,9 @@ export default {
     doneProject () {
       return this.$store.getters.doneProject
     },
-    rewardList () {
-      return this.$store.getters.doneRewards
+    doneRewards () {
+      return this.$store.getters.doneGetRewardsByProjectId || []
     }
-  },
-  methods: {
   }
 }
 </script>

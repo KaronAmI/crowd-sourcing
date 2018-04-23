@@ -23,6 +23,9 @@ export const findApi = (type) => {
     case 'delDeviceByDeviceId':
       url = `${host}/api/devices/delDeviceByDeviceId`
       break
+    case 'publish':
+      url = `${host}/api/project/publish`
+      break
     case 'project':
       url = `${host}/api/project/addProject`
       break
@@ -31,6 +34,18 @@ export const findApi = (type) => {
       break
     case 'updateProject':
       url = `${host}/api/project/updateProjectById`
+      break
+    case 'delProjectByProjectId':
+      url = `${host}/api/project/delProjectByProjectId`
+      break
+    case 'addReward':
+      url = `${host}/api/reward/addReward`
+      break
+    case 'delReward':
+      url = `${host}/api/reward/delReward`
+      break
+    case 'getRewardsByProjectId':
+      url = `${host}/api/reward/getRewardsByProjectId`
       break
   }
   return url

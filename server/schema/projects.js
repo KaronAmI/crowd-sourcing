@@ -24,10 +24,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    rewardId: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true
-    },
     os: {
       type: DataTypes.STRING(50),
       allowNull: true

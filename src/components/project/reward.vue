@@ -7,7 +7,7 @@
     <section class="reward-list">
       <div class="top">已添加奖励</div>
       <el-table
-        :data="rewardList"
+        :data="doneRewards"
         border
         style="width: 100%">
         <el-table-column
@@ -23,7 +23,7 @@
         <el-table-column
           label="操作">
           <template slot-scope="scope">
-            <el-button size="mini" type="danger" icon="el-icon-delete" @click="delRewards(scope)"></el-button>
+            <el-button :disabled="isDisabled" size="mini" type="danger" icon="el-icon-delete" @click="delReward(scope.row)"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -32,7 +32,7 @@
       <div class="top">添加奖励</div>
       <div class="col">
         <div class="title">类型：</div>
-        <el-select class="select" v-model="grade" placeholder="请选择类型">
+        <el-select :disabled="isDisabled" class="select" v-model="grade" placeholder="请选择类型">
           <el-option value="S" label="S"></el-option>
           <el-option value="A" label="A"></el-option>
           <el-option value="B" label="B"></el-option>
@@ -41,11 +41,11 @@
       </div>
       <div class="col">
         <div class="title">奖励：</div>
-        <el-input class="input" placeholder="请输入密码" v-model="reward" clearable></el-input>
+        <el-input :disabled="isDisabled" class="input" placeholder="请输入密码" v-model="reward" clearable></el-input>
       </div>
       <div class="col">
         <div class="title"></div>
-        <el-button plain size="mini" @click="setRewards">添加奖励</el-button>
+        <el-button :disabled="isDisabled" plain size="mini" @click="setRewards">添加奖励</el-button>
       </div>
     </section>
   </section>
@@ -61,19 +61,25 @@ export default {
     }
   },
   computed: {
-    rewardList () {
-      return this.$store.getters.doneRewards
+    isDisabled () {
+      return this.doneProject.isPublish ? true : false
+    },
+    doneRewards () {
+      return this.$store.getters.doneGetRewardsByProjectId
     },
     customerId () {
       return this.$store.getters.doneLogin.id
+    },
+    doneProject () {
+      return this.$store.getters.doneProject
     }
   },
   methods: {
-    setRewards () {
+    async setRewards () {
       if (!this.grade || !this.reward) return
       let isIn = false
-      for (let i = 0; i < this.rewardList.length; i++) {
-        if (this.rewardList[i].grade === this.grade) {
+      for (let i = 0; i < this.doneRewards.length; i++) {
+        if (this.doneRewards[i].grade === this.grade) {
           isIn = true
         }
       }
@@ -85,13 +91,23 @@ export default {
         return
       }
       const send = {}
+      send.projectId = this.doneProject.id
       send.customerId = this.customerId
       send.grade = this.grade
       send.reward = this.reward
-      this.$store.dispatch('setRewards', {data: send})
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'addReward', params: send})
+      this.refresh()
     },
-    delRewards (reward) {
-      this.$store.dispatch('delRewards', {data: reward.row})
+    async delReward (reward) {
+      const send = {}
+      send.id = reward.id
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'delReward', params: send})
+      this.refresh()
+    },
+    async refresh () {
+      const send = {}
+      send.projectId = this.doneProject.id
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getRewardsByProjectId', params: send})
     }
   }
 }
