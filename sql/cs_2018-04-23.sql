@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.21)
 # Database: cs
-# Generation Time: 2018-04-23 00:58:10 +0000
+# Generation Time: 2018-04-23 08:15:14 +0000
 # ************************************************************
 
 
@@ -89,7 +89,6 @@ DROP TABLE IF EXISTS `projects`;
 
 CREATE TABLE `projects` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `rewardId` int(11) DEFAULT NULL,
   `customerId` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `releaseTime` datetime DEFAULT NULL,
@@ -105,19 +104,6 @@ CREATE TABLE `projects` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `projects` WRITE;
-/*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-
-INSERT INTO `projects` (`id`, `rewardId`, `customerId`, `name`, `releaseTime`, `description`, `start`, `end`, `isExamine`, `isPublish`, `os`, `osVersion`, `phoneName`, `testerNumber`)
-VALUES
-	(18,NULL,9,'7',NULL,'5','2018-04-05 16:00:00','2018-05-20 16:00:00',1,1,'android','4','2',6),
-	(19,NULL,9,'good',NULL,'2','2018-04-04 16:00:00','2018-05-19 16:00:00',0,0,'ios','11.3','iphonex',2),
-	(20,NULL,9,'5',NULL,'5','2018-04-04 16:00:00','2018-05-20 16:00:00',1,0,'android','5','5',5),
-	(21,NULL,9,'i miss u',NULL,'i miss u','2018-05-19 16:00:00','2018-05-19 16:00:00',1,0,'android','i miss u','i miss u',520),
-	(22,NULL,9,'1',NULL,'4','2018-04-05 16:00:00','2018-05-13 16:00:00',1,0,'android','3','2',5);
-
-/*!40000 ALTER TABLE `projects` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table rewards
@@ -127,12 +113,46 @@ DROP TABLE IF EXISTS `rewards`;
 
 CREATE TABLE `rewards` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `projectId` int(11) NOT NULL,
-  `grade` int(11) DEFAULT NULL,
+  `projectId` int(11) DEFAULT NULL,
+  `grade` varchar(11) DEFAULT NULL,
   `reward` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+LOCK TABLES `rewards` WRITE;
+/*!40000 ALTER TABLE `rewards` DISABLE KEYS */;
+
+INSERT INTO `rewards` (`id`, `projectId`, `grade`, `reward`)
+VALUES
+	(4,31,'S',3),
+	(8,30,'S',3),
+	(9,33,'S',10),
+	(10,33,'A',8),
+	(13,34,'A',8),
+	(14,34,'B',6),
+	(15,34,'C',2),
+	(16,34,'S',10),
+	(17,38,'S',520),
+	(18,38,'A',52),
+	(19,38,'B',20),
+	(21,38,'C',2),
+	(22,40,'S',520),
+	(23,40,'A',20),
+	(24,40,'B',0),
+	(25,41,'S',222),
+	(26,41,'A',22),
+	(27,41,'B',2),
+	(28,44,'S',222),
+	(29,44,'A',22),
+	(30,44,'B',2),
+	(31,45,'S',666),
+	(32,45,'A',66),
+	(34,45,'B',6),
+	(35,46,'S',520),
+	(36,46,'A',20);
+
+/*!40000 ALTER TABLE `rewards` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table users
