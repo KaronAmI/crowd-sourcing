@@ -69,7 +69,7 @@ export default {
       }
     },
     doneRewards () {
-      return this.$store.getters.doneGetRewardsByProjectId
+      return this.$store.getters.doneGetRewardsByProjectId || []
     },
     customerId () {
       return this.$store.getters.doneLogin.id

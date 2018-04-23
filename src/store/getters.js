@@ -5,6 +5,7 @@ export default {
   doneDeviceForTester: state => state.deviceForTester,
   doneDelDeviceByDeviceId: state => state.delDeviceByDeviceId,
   donePublish: state => state.publish,
+  doneProjectStep: state => state.projectStep,
   doneProject: state => state.project,
   doneRewards: state => state.rewards,
   doneProjectsForCustomer: state => state.projectsForCustomer,
