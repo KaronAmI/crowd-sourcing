@@ -65,7 +65,7 @@ export default {
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'projectsForCustomer', params: send})
     },
     async edit (project) {
-      await this.$store.dispatch('setProject', {type: 'project', data: project})
+      await this.$store.dispatch('setState', {type: 'project', data: project})
       const send = {}
       send.projectId = project.id
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getRewardsByProjectId', params: send})
@@ -86,6 +86,10 @@ export default {
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'delProjectByProjectId', params: send})
       this.showMsg(this.doneDelProjectByProjectId)
       this.refresh()
+      if (this.doneProject.id === project.id) {
+        await this.$store.dispatch('setState', {type: 'project', data: ''})
+        await this.$store.dispatch('setState', {type: 'getRewardsByProjectId', data: ''})
+      }
     },
     async refresh () {
       const send = {}

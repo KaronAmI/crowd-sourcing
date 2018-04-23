@@ -84,7 +84,11 @@ export default {
   },
   computed: {
     isDisabled () {
-      return this.doneProject.isPublish ? true : false
+      if (this.doneProject.isPublish) {
+        return true
+      } else {
+        return false
+      }
     },
     customerId () {
       return this.$store.getters.doneLogin.id
@@ -123,7 +127,7 @@ export default {
       project.testerNumber = this.testerNumber
       project.isExamine = this.isExamine
       project.isPublish = false
-      await this.$store.dispatch('setProject', {type: 'project', data: project})
+      await this.$store.dispatch('setState', {type: 'project', data: project})
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'project', params: project})
       this.showMsg(this.doneProject)
       this.refresh()
@@ -143,7 +147,7 @@ export default {
       project.isExamine = this.isExamine
       project.isPublish = false
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'updateProject', params: project})
-      await this.$store.dispatch('setProject', {type: 'project', data: project})
+      await this.$store.dispatch('setState', {type: 'project', data: project})
       this.showMsg(this.doneUpdateProject)
       this.refresh()
     },

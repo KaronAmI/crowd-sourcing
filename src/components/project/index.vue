@@ -36,7 +36,8 @@ export default {
   methods: {
     async addNew () {
       this.isNew = true
-      await this.$store.dispatch('setProject', {type: 'project', data: {}})
+      await this.$store.dispatch('setState', {type: 'project', data: ''})
+      await this.$store.dispatch('setState', {type: 'getRewardsByProjectId', data: ''})
     }
   }
 }

@@ -62,7 +62,11 @@ export default {
   },
   computed: {
     isDisabled () {
-      return this.doneProject.isPublish ? true : false
+      if (this.doneProject.isPublish) {
+        return true
+      } else {
+        return false
+      }
     },
     doneRewards () {
       return this.$store.getters.doneGetRewardsByProjectId

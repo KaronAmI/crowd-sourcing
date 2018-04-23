@@ -12,9 +12,6 @@ export default {
       }
     })
   },
-  setProject ({commit}, {type, data}) {
-    return commit('setState', {type, data})
-  },
   setRewards ({commit}, {data}) {
     return commit('setRewards', {data})
   },
