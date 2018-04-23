@@ -69,6 +69,8 @@ export default {
       const send = {}
       send.projectId = project.id
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getRewardsByProjectId', params: send})
+      await this.$store.dispatch('setState', {type: 'projectStep', data: 1})
+      await this.$store.dispatch('setState', {type: 'isNewProject', data: false})
     },
     async publish (project) {
       const send = {}

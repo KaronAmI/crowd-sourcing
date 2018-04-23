@@ -14,6 +14,7 @@ export default new Vuex.Store({
       msg: '',
       type: 'customer'
     },
+    isNewProject: false,
     projectStep: 1,
     addDevice: '',
     deviceForTester: '',

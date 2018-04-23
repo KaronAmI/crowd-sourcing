@@ -4,7 +4,7 @@
       <el-button type="success" @click="addNew">添加新项目</el-button>
     </div>
     <list></list>
-    <add v-if="doneProject || isNew"></add>
+    <add v-if="doneProject || doneIsNewProject"></add>
     <preview v-if="doneProject"></preview>
   </div>
 </template>
@@ -31,11 +31,14 @@ export default {
     },
     doneProject () {
       return this.$store.getters.doneProject
+    },
+    doneIsNewProject () {
+      return this.$store.getters.doneIsNewProject
     }
   },
   methods: {
     async addNew () {
-      this.isNew = true
+      await this.$store.dispatch('setState', {type: 'isNewProject', data: true})
       await this.$store.dispatch('setState', {type: 'project', data: ''})
       await this.$store.dispatch('setState', {type: 'getRewardsByProjectId', data: ''})
       await this.$store.dispatch('setState', {type: 'projectStep', data: 1})
