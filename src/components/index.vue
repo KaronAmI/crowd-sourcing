@@ -12,10 +12,7 @@
         <el-menu-item index="/cs/device" v-if="isTester">
           <span slot="title">添加设备</span>
         </el-menu-item>
-        <el-menu-item index="/cs/reward" v-if="isCustomer">
-          <span slot="title">奖励设置</span>
-        </el-menu-item>
-        <el-menu-item index="/cs/device" v-if="isCustomer">
+        <el-menu-item index="/cs/project" v-if="isCustomer">
           <span slot="title">发布项目</span>
         </el-menu-item>
       </el-menu>

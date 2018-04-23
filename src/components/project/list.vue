@@ -76,7 +76,7 @@ export default {
       send.isPublish = true
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'publish', params: send})
       this.refresh()
-      if (this.doneProject.id === project.id ) {
+      if (this.doneProject.id === project.id) {
         project.isPublish = true
       }
     },
