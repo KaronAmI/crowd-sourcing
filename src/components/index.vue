@@ -6,13 +6,13 @@
     </el-header>
     <el-aside width="200px" class="cs-nav">
       <el-menu router class="cs-nav-menu">
-        <!-- <el-menu-item index="/cs/project">
+        <el-menu-item index="/cs/projects">
           <span slot="title">项目大厅</span>
-        </el-menu-item> -->
+        </el-menu-item>
         <el-menu-item index="/cs/device" v-if="isTester">
           <span slot="title">添加设备</span>
         </el-menu-item>
-        <el-menu-item index="/cs/project" v-if="isCustomer">
+        <el-menu-item index="/cs/manageProjects" v-if="isCustomer">
           <span slot="title">发布项目</span>
         </el-menu-item>
       </el-menu>

@@ -19,6 +19,7 @@ router.post('/api/devices/addDevice', device.addDevice)
 router.post('/api/devices/deviceForTester', device.getDeviceByTesterId)
 router.post('/api/devices/delDeviceByDeviceId', device.delDeviceByDeviceId)
 
+router.get('/api/project/publishProjects', project.publishProjects)
 router.post('/api/project/publish', project.publish)
 router.post('/api/project/addProject', project.addProject)
 router.post('/api/project/getProjectsByCustomerId', project.getProjectsByCustomerId)

@@ -26,7 +26,6 @@ const getProjectByName = async (obj) => {
   })
   return project
 }
-
 const addProject = async (obj) => {
   const existingProject = await getProjectByName(obj)
   if (existingProject) {
@@ -65,7 +64,6 @@ const addProject = async (obj) => {
     return Object.assign({}, msg, newProject.dataValues)
   }
 }
-
 const updateProjectById = async (obj) => {
   await Project.update({
       name: obj.name,
@@ -88,7 +86,6 @@ const updateProjectById = async (obj) => {
     error: false
   }
 }
-
 const publish = async (obj) => {
   await Project.update({
       isPublish: obj.isPublish,
@@ -104,11 +101,19 @@ const publish = async (obj) => {
     error: false
   }
 }
+const getProjectsByPublish = async () => {
+  return await Project.findAll({
+    where: {
+      isPublish: true
+    }
+  })
+}
 module.exports = {
   delProjectByProjectId,
   getProjectsByCustomerId,
   getProjectByName,
   addProject,
   updateProjectById,
-  publish
+  publish,
+  getProjectsByPublish
 }

@@ -31,7 +31,12 @@ const publish = async function (ctx) {
   const result = await project.publish(send)
   ctx.body = result
 }
+const publishProjects = async function (ctx) {
+  const result = await project.getProjectsByPublish()
+  ctx.body = result
+}
 module.exports = {
+  publishProjects,
   publish,
   delProjectByProjectId,
   addProject,

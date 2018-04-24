@@ -4,7 +4,8 @@ import index from '@/components/index'
 import register from '@/components/login/register'
 import login from '@/components/login/login'
 import device from '@/components/device/index'
-import project from '@/components/project/index'
+import manageProjects from '@/components/project/manage'
+import publishProjects from '@/components/project/publish'
 
 Vue.use(Router)
 
@@ -20,8 +21,16 @@ export default new Router({
           component: device
         },
         {
-          path: 'project',
-          component: project
+          path: 'projects',
+          component: publishProjects
+        },
+        {
+          path: 'project/detail/:id',
+          component: publishProjects
+        },
+        {
+          path: 'manageProjects',
+          component: manageProjects
         }
       ]
     },

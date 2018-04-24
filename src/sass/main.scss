@@ -207,3 +207,35 @@
     padding: 20px 40px;
   }
 }
+
+.cs-project-publishProjects {
+  .publishProject {
+    margin-bottom: 10px;
+  }
+  .col {
+    position: relative;
+    padding: 6px 0 6px 100px;
+  }
+  .title, .value {
+    line-height: 20px;
+  }
+  .title {
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: right;
+    width: 100px;
+    color: $textColor2;
+    padding: 6px 0;
+  }
+  .value {
+    word-break: break-all;
+  }
+  .content {
+    line-height: 20px;
+  }
+  .opr {
+    height: 28px;
+    margin-top: 10px;
+  }
+}
