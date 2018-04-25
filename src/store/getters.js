@@ -12,6 +12,7 @@ export default {
   doneRewards: state => state.rewards,
   doneProjectsForCustomer: state => state.projectsForCustomer,
   doneDelProjectByProjectId: state => state.delProjectByProjectId,
+  doneGetProjectByProjectId: state => state.getProjectByProjectId,
   doneGetRewardsByProjectId: state => state.getRewardsByProjectId,
   doneDelReward: state => state.delReward,
   doneUpdateProject: state => state.updateProject

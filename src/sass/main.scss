@@ -187,13 +187,12 @@
       position: absolute;
       left: 0;
       top: 0;
-      height: 40px;
-      line-height: 40px;
       width: 108px;
+      color: $textColor2;
     }
     .single {
-      height: 40px;
-      line-height: 40px;
+      padding: 0 0 12px;
+      word-break: break-all;
     }
   }
 }

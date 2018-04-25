@@ -23,6 +23,7 @@ router.get('/api/project/publishProjects', project.publishProjects)
 router.post('/api/project/publish', project.publish)
 router.post('/api/project/addProject', project.addProject)
 router.post('/api/project/getProjectsByCustomerId', project.getProjectsByCustomerId)
+router.post('/api/project/getProjectByProjectId', project.getProjectByProjectId)
 router.post('/api/project/updateProjectById', project.updateProjectById)
 router.post('/api/project/delProjectByProjectId', project.delProjectByProjectId)
 

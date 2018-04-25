@@ -1,39 +1,39 @@
 <template>
   <el-card class="cs-card cs-card-preview" :body-style="{'padding': '0'}">
-    <div class="header">项目编辑预览</div>
+    <div class="header">项目详情</div>
     <div class="part">
       <div class="title">基本信息</div>
       <div class="demand">
         <div class="name">项目名称：</div>
-        <div class="value single">{{doneProject.name}}</div>
+        <div class="value single">{{doneGetProjectByProjectId.name}}</div>
       </div>
       <div class="demand">
         <div class="name">手机名要求：</div>
-        <div class="value single">{{doneProject.phoneName}}</div>
+        <div class="value single">{{doneGetProjectByProjectId.phoneName}}</div>
       </div>
       <div class="demand">
         <div class="name">系统要求：</div>
-        <div class="value single">{{doneProject.os}}</div>
+        <div class="value single">{{doneGetProjectByProjectId.os}}</div>
       </div>
       <div class="demand">
         <div class="name">系统版本要求：</div>
-        <div class="value single">{{doneProject.osVersion}}</div>
+        <div class="value single">{{doneGetProjectByProjectId.osVersion}}</div>
       </div>
       <div class="demand">
         <div class="name">项目描述：</div>
-        <div class="value single">{{doneProject.description}}</div>
+        <div class="value single">{{doneGetProjectByProjectId.description}}</div>
       </div>
       <div class="demand">
         <div class="name">测试人数：</div>
-        <div class="value single">{{doneProject.name}}</div>
+        <div class="value single">{{doneGetProjectByProjectId.name}}</div>
       </div>
       <div class="demand">
         <div class="name">测试时间：</div>
-        <div class="value single">{{doneProject.start}} - {{doneProject.end}}</div>
+        <div class="value single">{{doneGetProjectByProjectId.start}} - {{doneGetProjectByProjectId.end}}</div>
       </div>
       <div class="demand">
         <div class="name">是否审核：</div>
-        <div class="value single">{{doneProject.isExamine}}</div>
+        <div class="value single">{{doneGetProjectByProjectId.isExamine}}</div>
       </div>
     </div>
 
@@ -60,13 +60,25 @@
 
 <script>
 export default {
-  name: 'projectView',
+  name: 'projectDetail',
   computed: {
-    doneProject () {
-      return this.$store.getters.doneProject
+    doneGetProjectByProjectId () {
+      return this.$store.getters.doneGetProjectByProjectId || []
     },
     doneRewards () {
       return this.$store.getters.doneGetRewardsByProjectId || []
+    }
+  },
+  mounted () {
+    this.doFetch()
+  },
+  methods: {
+    async doFetch () {
+      const projectId = this.$store.state.route.params.id
+      const send = {}
+      send.projectId = projectId
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getProjectByProjectId', params: send})
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getRewardsByProjectId', params: send})
     }
   }
 }

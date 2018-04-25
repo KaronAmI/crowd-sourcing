@@ -19,6 +19,7 @@ export default new Vuex.Store({
     addDevice: '',
     deviceForTester: '',
     delDeviceByDeviceId: '',
+    getProjectByProjectId: '',
     register: '',
     publishProjects: '',
     publish: '',

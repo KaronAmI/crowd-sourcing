@@ -64,7 +64,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'projectInfo',
   data () {

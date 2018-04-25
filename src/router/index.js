@@ -6,6 +6,7 @@ import login from '@/components/login/login'
 import device from '@/components/device/index'
 import manageProjects from '@/components/project/manage'
 import publishProjects from '@/components/project/publish'
+import projectDetail from '@/components/project/detail'
 
 Vue.use(Router)
 
@@ -26,7 +27,7 @@ export default new Router({
         },
         {
           path: 'project/detail/:id',
-          component: publishProjects
+          component: projectDetail
         },
         {
           path: 'manageProjects',

@@ -41,6 +41,9 @@ export const findApi = (type) => {
     case 'delProjectByProjectId':
       url = `${host}/api/project/delProjectByProjectId`
       break
+    case 'getProjectByProjectId':
+      url = `${host}/api/project/getProjectByProjectId`
+      break
     case 'addReward':
       url = `${host}/api/reward/addReward`
       break

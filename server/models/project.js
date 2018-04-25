@@ -18,6 +18,13 @@ const getProjectsByCustomerId = async (obj) => {
     }
   })
 }
+const getProjectByProjectId = async (obj) => {
+  return await Project.findOne({
+    where: {
+      id: obj.projectId
+    }
+  })
+}
 const getProjectByName = async (obj) => {
   const project = await Project.findOne({
     where: {
@@ -111,6 +118,7 @@ const getProjectsByPublish = async () => {
 module.exports = {
   delProjectByProjectId,
   getProjectsByCustomerId,
+  getProjectByProjectId,
   getProjectByName,
   addProject,
   updateProjectById,
