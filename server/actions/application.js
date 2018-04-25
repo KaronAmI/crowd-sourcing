@@ -1,8 +1,16 @@
 const application = require('../models/application.js')
+const project = require('../models/project.js')
+const user = require('../models/user.js')
 
-const getApplications = async function (ctx) {
+const getApplicationsForTester = async function (ctx) {
   const send = ctx.request.body
-  const result = await application.getApplicationByProjectIdAndTesterId(send)
+  const applications = await application.getApplicationsByTesterId(send)
+  const result = []
+  for (let a of applications) {
+    const p = await project.getProjectByProjectId(a)
+    const r = Object.assign({}, p.dataValues, a.dataValues)
+    result.push(r)
+  }
   ctx.body = result
 }
 
@@ -24,7 +32,23 @@ const addApplication = async function (ctx) {
   ctx.body = Object.assign({}, msg, result.dataValues)
 }
 
+const getApplicationsForProject = async function (ctx) {
+  const send = ctx.request.body
+  const applications = await application.getApplicationByProjectId(send)
+  const result = []
+  for (let a of applications) {
+    const p = await project.getProjectByProjectId(a)
+    p.dataValues.projectName = p.dataValues.name
+    const u = await user.getUserByTesterId(a)
+    u.dataValues.userName = u.dataValues.name
+    const r = Object.assign({}, p.dataValues, u.dataValues, a.dataValues)
+    result.push(r)
+  }
+  ctx.body = result
+}
+
 module.exports = {
-  getApplications,
+  getApplicationsForTester,
+  getApplicationsForProject,
   addApplication
 }

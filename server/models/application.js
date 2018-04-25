@@ -23,6 +23,15 @@ const getApplicationByProjectId = async function (obj) {
   return applications
 }
 
+const getApplicationsByTesterId = async function (obj) {
+  const applications = await Application.findAll({
+    where: {
+      testerId: obj.testerId
+    }
+  })
+  return applications
+}
+
 const addApplication = async function (obj) {
   const existingApplication = await getApplicationByProjectIdAndTesterId(obj)
   if (existingApplication) {
@@ -54,6 +63,7 @@ const addApplication = async function (obj) {
 
 module.exports = {
   getApplicationByProjectIdAndTesterId,
+  getApplicationsByTesterId,
   getApplicationByProjectId,
   addApplication
 }

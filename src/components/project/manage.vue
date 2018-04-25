@@ -6,6 +6,7 @@
     <list></list>
     <add v-if="doneProject || doneIsNewProject"></add>
     <preview v-if="doneProject"></preview>
+    <applications v-if="applications.length"></applications>
   </div>
 </template>
 
@@ -13,6 +14,7 @@
 import list from '@/components/project/list'
 import add from '@/components/project/add'
 import preview from '@/components/project/preview'
+import applications from '@/components/project/applications'
 export default {
   name: 'project',
   data () {
@@ -23,7 +25,8 @@ export default {
   components: {
     list,
     add,
-    preview
+    preview,
+    applications
   },
   computed: {
     customerId () {
@@ -34,6 +37,9 @@ export default {
     },
     doneIsNewProject () {
       return this.$store.getters.doneIsNewProject
+    },
+    applications () {
+      return this.$store.getters.doneGetApplicationsForProject || []
     }
   },
   methods: {

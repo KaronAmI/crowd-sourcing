@@ -16,5 +16,7 @@ export default {
   doneGetRewardsByProjectId: state => state.getRewardsByProjectId,
   doneDelReward: state => state.delReward,
   doneUpdateProject: state => state.updateProject,
-  doneAddApplication: state => state.addApplication
+  doneAddApplication: state => state.addApplication,
+  doneGetApplicationsForTester: state => state.getApplicationsForTester,
+  doneGetApplicationsForProject: state => state.getApplicationsForProject
 }

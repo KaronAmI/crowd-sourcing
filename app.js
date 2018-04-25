@@ -33,6 +33,8 @@ router.post('/api/reward/delReward', reward.delReward)
 router.post('/api/reward/getRewardsByProjectId', reward.getRewardsByProjectId)
 
 router.post('/api/application/addApplication', application.addApplication)
+router.post('/api/application/getApplicationsForTester', application.getApplicationsForTester)
+router.post('/api/application/getApplicationsForProject', application.getApplicationsForProject)
 
 app.use(router.routes())
 

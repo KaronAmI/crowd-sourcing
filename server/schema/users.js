@@ -27,6 +27,10 @@ module.exports = function(sequelize, DataTypes) {
     type: {
       type: DataTypes.STRING(50),
       allowNull: true
+    },
+    integral: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
     }
   }, {
     tableName: 'users'

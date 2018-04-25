@@ -30,7 +30,7 @@
           <template slot-scope="scope">
             <el-button size="mini" type="success" :disabled="scope.row.isPublish ? true : false" @click="publish(scope.row)">发布</el-button>
             <el-button size="mini" type="primary" :disabled="scope.row.isPublish ? true : false" @click="edit(scope.row)">编辑</el-button>
-            <el-button size="mini" type="primary" :disabled="scope.row.isPublish ? false : true">申请情况</el-button>
+            <el-button size="mini" type="primary" :disabled="scope.row.isPublish ? false : true" @click="getApplications(scope.row)">申请情况</el-button>
             <el-button size="mini" type="danger" @click="del(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -50,7 +50,7 @@ export default {
       return this.$store.getters.donePublish
     },
     doneProjectsForCustomer () {
-      return this.$store.getters.doneProjectsForCustomer
+      return this.$store.getters.doneProjectsForCustomer || []
     },
     doneDelProjectByProjectId () {
       return this.$store.getters.doneDelProjectByProjectId
@@ -117,6 +117,11 @@ export default {
       const send = {}
       send.customerId = this.customerId
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'projectsForCustomer', params: send})
+    },
+    async getApplications (project) {
+      const send = {}
+      send.projectId = project.id
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getApplicationsForProject', params: send})
     },
     showMsg (msg) {
       this.$message({

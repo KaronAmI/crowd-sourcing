@@ -9,7 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     login: {
-      id: 9,
+      id: 10,
       isUser: true,
       msg: '',
       type: 'tester'
@@ -31,7 +31,9 @@ export default new Vuex.Store({
     addReward: '',
     delReward: '',
     getRewardsByProjectId: '',
-    addApplication: ''
+    addApplication: '',
+    getApplicationsForTester: '',
+    getApplicationsForProject: ''
   },
   mutations,
   actions,

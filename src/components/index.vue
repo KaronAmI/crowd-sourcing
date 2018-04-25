@@ -9,11 +9,14 @@
         <el-menu-item index="/cs/projects/1">
           <span slot="title">项目大厅</span>
         </el-menu-item>
+        <el-menu-item index="/cs/manageProjects" v-if="isCustomer">
+          <span slot="title">发布项目</span>
+        </el-menu-item>
         <el-menu-item index="/cs/device" v-if="isTester">
           <span slot="title">添加设备</span>
         </el-menu-item>
-        <el-menu-item index="/cs/manageProjects" v-if="isCustomer">
-          <span slot="title">发布项目</span>
+        <el-menu-item index="/cs/myApplications" v-if="isTester">
+          <span slot="title">我的申请</span>
         </el-menu-item>
       </el-menu>
     </el-aside>

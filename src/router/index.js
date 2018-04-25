@@ -7,6 +7,7 @@ import device from '@/components/device/index'
 import manageProjects from '@/components/project/manage'
 import publishProjects from '@/components/project/publish'
 import projectDetail from '@/components/project/detail'
+import applications from '@/components/application/index'
 
 Vue.use(Router)
 
@@ -32,6 +33,10 @@ export default new Router({
         {
           path: 'manageProjects',
           component: manageProjects
+        },
+        {
+          path: 'myApplications',
+          component: applications
         }
       ]
     },

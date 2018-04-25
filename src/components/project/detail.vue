@@ -107,7 +107,7 @@ export default {
         D = date.getDate() < 10 ? `0${date.getDate()}/` : `${date.getDate()}/`
       }
       return M + D + Y
-    },
+    }
   },
   methods: {
     goback () {

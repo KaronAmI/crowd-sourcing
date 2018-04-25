@@ -17,6 +17,14 @@ const getUserByEmail = async function (obj) {
   return user
 }
 
+const getUserByTesterId = async function (obj) {
+  const user = await User.findOne({
+    where: {
+      id: obj.testerId
+    }
+  })
+  return user
+}
 const addUser = async function (user) {
   const existingUser = await getUserByEmail(user)
   if (existingUser) {
@@ -41,5 +49,6 @@ const addUser = async function (user) {
 module.exports = {
   getUsers,
   getUserByEmail,
+  getUserByTesterId,
   addUser
 }
