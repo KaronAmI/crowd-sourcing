@@ -22,7 +22,7 @@ export default new Router({
           component: device
         },
         {
-          path: 'projects',
+          path: 'projects/:page',
           component: publishProjects
         },
         {

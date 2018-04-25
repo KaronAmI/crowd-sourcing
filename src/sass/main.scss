@@ -171,6 +171,7 @@
     margin: 20px 40px;
   }
   .header {
+    position: relative;
     padding: 20px 40px;
     border-bottom: 1px solid $borderColor0;
   }
@@ -194,6 +195,11 @@
       padding: 0 0 12px;
       word-break: break-all;
     }
+  }
+  .cs-card-preview-apply {
+    position: absolute;
+    right: 40px;
+    top: 15px;
   }
 }
 
@@ -236,5 +242,14 @@
   .opr {
     height: 28px;
     margin-top: 10px;
+  }
+}
+
+.cs-breadcrumb {
+  padding: 20px 40px;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
   }
 }

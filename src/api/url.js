@@ -53,6 +53,9 @@ export const findApi = (type) => {
     case 'getRewardsByProjectId':
       url = `${host}/api/reward/getRewardsByProjectId`
       break
+    case 'addApplication':
+      url = `${host}/api/application/addApplication`
+      break
   }
   return url
 }

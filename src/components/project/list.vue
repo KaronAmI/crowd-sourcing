@@ -8,18 +8,21 @@
         style="width: 100%">
         <el-table-column
           prop="name"
-          label="项目名称">
+          label="项目名称"
+          width="120">
         </el-table-column>
         <el-table-column
-          label="是否审核">
+          label="是否审核"
+          width="60">
           <template slot-scope="scope">
             <el-tag type="success" >{{scope.row.isExamine ? '是' : '否'}}</el-tag>
           </template>
         </el-table-column>
         <el-table-column
-          label="测试时间">
+          label="测试时间"
+          width="120">
           <template slot-scope="scope">
-            {{scope.row.start}} 至 {{scope.row.end}}
+            {{scope.row.start | formatTime}} 至 {{scope.row.end | formatTime}}
           </template>
         </el-table-column>
         <el-table-column
@@ -27,6 +30,7 @@
           <template slot-scope="scope">
             <el-button size="mini" type="success" :disabled="scope.row.isPublish ? true : false" @click="publish(scope.row)">发布</el-button>
             <el-button size="mini" type="primary" :disabled="scope.row.isPublish ? true : false" @click="edit(scope.row)">编辑</el-button>
+            <el-button size="mini" type="primary" :disabled="scope.row.isPublish ? false : true">申请情况</el-button>
             <el-button size="mini" type="danger" @click="del(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -46,7 +50,7 @@ export default {
       return this.$store.getters.donePublish
     },
     doneProjectsForCustomer () {
-      return this.$store.getters.doneProjectsForCustomer || []
+      return this.$store.getters.doneProjectsForCustomer
     },
     doneDelProjectByProjectId () {
       return this.$store.getters.doneDelProjectByProjectId
@@ -57,6 +61,22 @@ export default {
   },
   mounted () {
     this.doFetch()
+  },
+  filters: {
+    formatTime (time) {
+      if (!time) return
+      let date = ''
+      let Y = ''
+      let M = ''
+      let D = ''
+      if (time) {
+        date = new Date(time)
+        Y = date.getFullYear()
+        M = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}/` : `0${date.getMonth() + 1}/`
+        D = date.getDate() < 10 ? `0${date.getDate()}/` : `${date.getDate()}/`
+      }
+      return M + D + Y
+    }
   },
   methods: {
     async doFetch () {

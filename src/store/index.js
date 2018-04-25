@@ -12,7 +12,7 @@ export default new Vuex.Store({
       id: 9,
       isUser: true,
       msg: '',
-      type: 'customer'
+      type: 'tester'
     },
     isNewProject: false,
     projectStep: 1,
@@ -30,7 +30,8 @@ export default new Vuex.Store({
     rewards: [],
     addReward: '',
     delReward: '',
-    getRewardsByProjectId: ''
+    getRewardsByProjectId: '',
+    addApplication: ''
   },
   mutations,
   actions,

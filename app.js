@@ -5,6 +5,7 @@ const user = require('./server/actions/user.js')
 const device = require('./server/actions/device.js')
 const project = require('./server/actions/project.js')
 const reward = require('./server/actions/reward.js')
+const application = require('./server/actions/application.js')
 
 const app = new Koa()
 const router = new Router()
@@ -30,6 +31,8 @@ router.post('/api/project/delProjectByProjectId', project.delProjectByProjectId)
 router.post('/api/reward/addReward', reward.addReward)
 router.post('/api/reward/delReward', reward.delReward)
 router.post('/api/reward/getRewardsByProjectId', reward.getRewardsByProjectId)
+
+router.post('/api/application/addApplication', application.addApplication)
 
 app.use(router.routes())
 

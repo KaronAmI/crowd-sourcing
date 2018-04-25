@@ -53,7 +53,6 @@
           <el-radio :disabled="isDisabled" v-model="isExamine" :label="false">否</el-radio>
         </div>
       </div>
-
       <div class="device-col">
         <div class="title"></div>
         <el-button :disabled="isDisabled" plain size="mini" @click="updateProject" v-if="id">更新基本信息至草稿</el-button>
