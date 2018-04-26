@@ -25,7 +25,7 @@
       </div>
       <div class="demand">
         <div class="name">测试人数：</div>
-        <div class="value single">{{doneProject.name}}</div>
+        <div class="value single">{{doneProject.testerNumber}}</div>
       </div>
       <div class="demand">
         <div class="name">测试时间：</div>

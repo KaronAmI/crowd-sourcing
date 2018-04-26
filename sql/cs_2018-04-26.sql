@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.21)
 # Database: cs
-# Generation Time: 2018-04-24 06:00:14 +0000
+# Generation Time: 2018-04-26 14:09:07 +0000
 # ************************************************************
 
 
@@ -32,8 +32,29 @@ CREATE TABLE `applications` (
   `auditTime` datetime DEFAULT NULL,
   `isPass` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `applications` WRITE;
+/*!40000 ALTER TABLE `applications` DISABLE KEYS */;
+
+INSERT INTO `applications` (`id`, `projectId`, `testerId`, `auditTime`, `isPass`)
+VALUES
+	(26,NULL,NULL,NULL,NULL),
+	(27,5,9,'2018-04-25 13:53:42',1),
+	(28,6,9,'2018-04-25 13:54:17',0),
+	(29,9,9,'2018-04-25 13:54:38',0),
+	(30,7,9,'2018-04-25 13:55:34',0),
+	(31,5,11,'2018-04-25 13:56:39',1),
+	(32,6,11,'2018-04-25 13:56:45',0),
+	(33,7,11,'2018-04-25 13:56:46',0),
+	(34,9,11,'2018-04-25 13:56:47',0),
+	(35,7,10,'2018-04-25 16:29:43',0),
+	(36,6,10,'2018-04-25 16:29:45',0),
+	(37,5,10,'2018-04-25 16:29:46',1),
+	(38,9,10,'2018-04-25 16:29:47',0);
+
+/*!40000 ALTER TABLE `applications` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table defects
@@ -51,7 +72,7 @@ CREATE TABLE `defects` (
   `addTime` datetime DEFAULT NULL,
   `isUse` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
@@ -68,18 +89,8 @@ CREATE TABLE `devices` (
   `manufacturer` varchar(50) DEFAULT NULL,
   `testerId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `devices` WRITE;
-/*!40000 ALTER TABLE `devices` DISABLE KEYS */;
-
-INSERT INTO `devices` (`id`, `name`, `os`, `osVersion`, `manufacturer`, `testerId`)
-VALUES
-	(19,'iphone x','ios','11.3','apple',9),
-	(21,'honor 9','android','7.0','honor',9);
-
-/*!40000 ALTER TABLE `devices` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table projects
@@ -102,17 +113,18 @@ CREATE TABLE `projects` (
   `phoneName` varchar(50) DEFAULT NULL,
   `testerNumber` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
 
 INSERT INTO `projects` (`id`, `customerId`, `name`, `releaseTime`, `description`, `start`, `end`, `isExamine`, `isPublish`, `os`, `osVersion`, `phoneName`, `testerNumber`)
 VALUES
-	(1,9,'1','2018-04-24 02:22:50','4','2018-04-06 16:00:00','2018-05-06 16:00:00',1,1,'android','3','2',5),
-	(2,9,'2','2018-04-24 02:22:53','2','2018-04-12 16:00:00','2018-05-12 16:00:00',1,1,'ios','2','2',2),
-	(3,9,'3','2018-04-24 04:10:31','okokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokok','2018-04-19 16:00:00','2018-05-19 16:00:00',1,1,'android','3','3',3),
-	(4,9,'5','2018-04-24 05:05:22','5',NULL,NULL,1,1,'android','5','5',5);
+	(5,10,'where are you going','2018-04-25 13:50:48','there','2018-04-05 16:00:00','2018-05-05 16:00:00',0,1,'android','7.0','honor 9',10),
+	(6,10,'1','2018-04-25 13:50:53','4','2018-04-19 16:00:00','2018-05-19 16:00:00',1,1,'android','3','2',5),
+	(7,10,'2','2018-04-25 13:51:03','2','2018-04-19 16:00:00','2018-05-19 16:00:00',1,1,'android','2','2',2),
+	(9,10,'6','2018-04-25 13:51:52','6','2018-04-12 16:00:00','2018-05-12 16:00:00',1,1,'ios','6','6',6),
+	(10,10,'漫威-复仇者联盟3',NULL,'嘿嘿嘿嘿','2018-04-19 16:00:00','2018-05-19 16:00:00',1,0,'android','7.0','honor',10);
 
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -129,7 +141,7 @@ CREATE TABLE `rewards` (
   `grade` varchar(11) DEFAULT NULL,
   `reward` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `rewards` WRITE;
 /*!40000 ALTER TABLE `rewards` DISABLE KEYS */;
@@ -167,7 +179,11 @@ VALUES
 	(39,1,'B',1),
 	(40,2,'S',6),
 	(41,2,'A',5),
-	(42,2,'B',4);
+	(42,2,'B',4),
+	(43,5,'S',10),
+	(44,5,'A',8),
+	(45,5,'B',6),
+	(47,5,'C',4);
 
 /*!40000 ALTER TABLE `rewards` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -185,17 +201,19 @@ CREATE TABLE `users` (
   `phone` varchar(11) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `type` varchar(50) DEFAULT NULL,
+  `integral` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
-INSERT INTO `users` (`id`, `name`, `password`, `phone`, `email`, `type`)
+INSERT INTO `users` (`id`, `name`, `password`, `phone`, `email`, `type`, `integral`)
 VALUES
-	(2,'0','0',NULL,'0','admin'),
-	(9,'1','1',NULL,'1','tester'),
-	(10,'2','2',NULL,'2','customer');
+	(2,'0','0',NULL,'0','admin',10000),
+	(9,'karon','1',NULL,'karon','tester',20),
+	(10,'2','2',NULL,'2','customer',1000),
+	(11,'xiaomei','3',NULL,'xiaomei','tester',10);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
