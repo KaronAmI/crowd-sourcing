@@ -8,33 +8,36 @@ const reward = require('./server/actions/reward.js')
 const application = require('./server/actions/application.js')
 
 const app = new Koa()
-const router = new Router()
+const router = new Router({
+  prefix: '/api'
+})
 
 app.use(bodyParser())
 
-router.get('/api/users', user.getUsers)
-router.post('/api/users/login', user.getUserByEmail)
-router.post('/api/users/register', user.addUser)
+router.get('/users', user.getUsers)
+router.post('/users/login', user.getUserByEmail)
+router.post('/users/register', user.addUser)
 
-router.post('/api/devices/addDevice', device.addDevice)
-router.post('/api/devices/deviceForTester', device.getDeviceByTesterId)
-router.post('/api/devices/delDeviceByDeviceId', device.delDeviceByDeviceId)
+router.post('/devices/addDevice', device.addDevice)
+router.post('/devices/deviceForTester', device.getDeviceByTesterId)
+router.post('/devices/delDeviceByDeviceId', device.delDeviceByDeviceId)
 
-router.get('/api/project/publishProjects', project.publishProjects)
-router.post('/api/project/publish', project.publish)
-router.post('/api/project/addProject', project.addProject)
-router.post('/api/project/getProjectsByCustomerId', project.getProjectsByCustomerId)
-router.post('/api/project/getProjectByProjectId', project.getProjectByProjectId)
-router.post('/api/project/updateProjectById', project.updateProjectById)
-router.post('/api/project/delProjectByProjectId', project.delProjectByProjectId)
+router.get('/project/publishProjects', project.publishProjects)
+router.post('/project/publish', project.publish)
+router.post('/project/addProject', project.addProject)
+router.post('/project/getProjectsByCustomerId', project.getProjectsByCustomerId)
+router.post('/project/getProjectByProjectId', project.getProjectByProjectId)
+router.post('/project/updateProjectById', project.updateProjectById)
+router.post('/project/delProjectByProjectId', project.delProjectByProjectId)
 
-router.post('/api/reward/addReward', reward.addReward)
-router.post('/api/reward/delReward', reward.delReward)
-router.post('/api/reward/getRewardsByProjectId', reward.getRewardsByProjectId)
+router.post('/reward/addReward', reward.addReward)
+router.post('/reward/delReward', reward.delReward)
+router.post('/reward/getRewardsByProjectId', reward.getRewardsByProjectId)
 
-router.post('/api/application/addApplication', application.addApplication)
-router.post('/api/application/getApplicationsForTester', application.getApplicationsForTester)
-router.post('/api/application/getApplicationsForProject', application.getApplicationsForProject)
+router.post('/application/addApplication', application.addApplication)
+router.post('/application/delApplication', application.delApplication)
+router.post('/application/getApplicationsForTester', application.getApplicationsForTester)
+router.post('/application/getApplicationsForProject', application.getApplicationsForProject)
 
 app.use(router.routes())
 

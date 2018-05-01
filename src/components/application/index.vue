@@ -49,7 +49,7 @@ export default {
       return this.$store.getters.doneLogin
     },
     applications () {
-      return this.$store.getters.doneGetApplicationsForTester
+      return this.$store.getters.doneGetApplicationsForTester || []
     }
   },
   filters: {

@@ -9,17 +9,25 @@ const getUsers = async function (ctx) {
 const getUserByEmail = async function (ctx) {
   const login = ctx.request.body
   const result = await user.getUserByEmail(login)
-  if (result.password === login.password ) {
-    ctx.body = {
-      isUser: true,
-      id: result.id,
-      type: result.type,
-      msg: ''
+  if (result !== null) {
+    if (result.password === login.password ) {
+      ctx.body = {
+        error: false,
+        id: result.id,
+        email: result.email,
+        type: result.type,
+        msg: '登录成功'
+      }
+    } else {
+      ctx.body = {
+        error: true,
+        msg: '密码错误!'
+      }
     }
   } else {
     ctx.body = {
-      isUser: false,
-      msg: '邮箱或密码错误'
+      error: true,
+      msg: '用户不存在!'
     }
   }
 }

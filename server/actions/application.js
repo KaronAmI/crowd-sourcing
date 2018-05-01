@@ -47,8 +47,19 @@ const getApplicationsForProject = async function (ctx) {
   ctx.body = result
 }
 
+const delApplication = async (ctx) => {
+  const send = ctx.request.body
+  const existingApplications = await application.delApplicationById(send)
+  existingApplications.destroy()
+  ctx.body = {
+    error: false,
+    msg: '删除成功'
+  }
+}
+
 module.exports = {
   getApplicationsForTester,
   getApplicationsForProject,
+  delApplication,
   addApplication
 }

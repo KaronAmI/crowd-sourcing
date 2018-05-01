@@ -8,12 +8,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    login: {
-      id: 10,
-      isUser: true,
-      msg: '',
-      type: 'tester'
-    },
+    login: {},
     isNewProject: false,
     projectStep: 1,
     addDevice: '',
@@ -32,6 +27,7 @@ export default new Vuex.Store({
     delReward: '',
     getRewardsByProjectId: '',
     addApplication: '',
+    delApplication: '',
     getApplicationsForTester: '',
     getApplicationsForProject: ''
   },

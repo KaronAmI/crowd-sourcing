@@ -46,24 +46,20 @@ const addApplication = async function (obj) {
       isPass: obj.isPass
     })
   }
-  // let msg = {}
-  // if (resultApplication.id) {
-  //   msg = {
-  //     msg: '保存成功',
-  //     error: false
-  //   }
-  // } else {
-  //   msg = {
-  //     msg: '保存失败',
-  //     error: true
-  //   }
-  // }
-  // return Object.assign({}, msg, resultApplication.dataValues)
+}
+
+const delApplicationById = async (obj) => {
+  return await Application.findOne({
+    where: {
+      id: obj.id
+    }
+  })
 }
 
 module.exports = {
   getApplicationByProjectIdAndTesterId,
   getApplicationsByTesterId,
   getApplicationByProjectId,
+  delApplicationById,
   addApplication
 }

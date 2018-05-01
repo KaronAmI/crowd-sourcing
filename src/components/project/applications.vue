@@ -39,7 +39,7 @@
           label="操作">
           <template slot-scope="scope">
             <el-button size="mini" type="danger" @click="del(scope.row)">删除</el-button>
-            <el-button size="mini" type="success" @click="del(scope.row)">通过该测试人员的申请</el-button>
+            <el-button size="mini" type="success" :disabled="scope.row.isPass ? true : false" @click="del(scope.row)">通过该测试人员的申请</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -56,6 +56,9 @@ export default {
     },
     applications () {
       return this.$store.getters.doneGetApplicationsForProject || []
+    },
+    delApplication () {
+      return this.$store.getters.doneDelApplication
     }
   },
   filters: {
@@ -75,10 +78,23 @@ export default {
     }
   },
   methods: {
-    async doFetch () {
+    async getApplications (projectId) {
       const send = {}
-      send.testerId = this.login.id
+      send.projectId = projectId
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getApplicationsForProject', params: send})
+    },
+    async del (application) {
+      const send = {}
+      send.id = application.id
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'delApplication', params: send})
+      this.getApplications(application.projectId)
+      this.showMsg(this.delApplication)
+    },
+    showMsg (msg) {
+      this.$message({
+        message: msg.msg,
+        type: msg.error ? 'error' : 'success'
+      })
     }
   }
 }
