@@ -36,6 +36,7 @@ router.post('/reward/getRewardsByProjectId', reward.getRewardsByProjectId)
 
 router.post('/application/addApplication', application.addApplication)
 router.post('/application/delApplication', application.delApplication)
+router.post('/application/updateApplication', application.updateApplicationById)
 router.post('/application/getApplicationsForTester', application.getApplicationsForTester)
 router.post('/application/getApplicationsForProject', application.getApplicationsForProject)
 

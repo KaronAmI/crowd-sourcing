@@ -61,6 +61,9 @@ export default {
     },
     delApplication () {
       return this.$store.getters.doneDelApplication
+    },
+    updateApplication () {
+      return this.$store.getters.doneUpdateApplication
     }
   },
   filters: {
@@ -91,6 +94,14 @@ export default {
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'delApplication', params: send})
       this.getApplications(application.projectId)
       this.showMsg(this.delApplication)
+    },
+    async pass (application) {
+      const send = {}
+      send.id = application.id
+      send.isPass = !application.isPass
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'updateApplication', params: send})
+      this.getApplications(application.projectId)
+      this.showMsg(this.updateApplication)
     },
     showMsg (msg) {
       this.$message({

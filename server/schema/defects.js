@@ -35,6 +35,10 @@ module.exports = function(sequelize, DataTypes) {
     isUse: {
       type: DataTypes.INTEGER(1),
       allowNull: true
+    },
+    isCommit: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true
     }
   }, {
     tableName: 'defects'

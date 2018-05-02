@@ -56,10 +56,26 @@ const delApplicationById = async (obj) => {
   })
 }
 
+const updateApplicationById = async (obj) => {
+  await Application.update({
+      isPass: obj.isPass
+    }, {
+      where: {
+        id: obj.id
+      }
+    }
+  )
+  return {
+    msg: '更新成功',
+    error: false
+  }
+}
+
 module.exports = {
   getApplicationByProjectIdAndTesterId,
   getApplicationsByTesterId,
   getApplicationByProjectId,
   delApplicationById,
+  updateApplicationById,
   addApplication
 }

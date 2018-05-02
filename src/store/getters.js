@@ -18,6 +18,7 @@ export default {
   doneUpdateProject: state => state.updateProject,
   doneAddApplication: state => state.addApplication,
   doneDelApplication: state => state.delApplication,
+  doneUpdateApplication: state => state.updateApplication,
   doneGetApplicationsForTester: state => state.getApplicationsForTester,
   doneGetApplicationsForProject: state => state.getApplicationsForProject
 }

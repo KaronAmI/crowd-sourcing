@@ -28,6 +28,7 @@ export default new Vuex.Store({
     getRewardsByProjectId: '',
     addApplication: '',
     delApplication: '',
+    updateApplication: '',
     getApplicationsForTester: '',
     getApplicationsForProject: ''
   },
