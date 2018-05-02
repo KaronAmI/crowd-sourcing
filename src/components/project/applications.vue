@@ -39,7 +39,9 @@
           label="操作">
           <template slot-scope="scope">
             <el-button size="mini" type="danger" @click="del(scope.row)">删除</el-button>
-            <el-button size="mini" type="success" :disabled="scope.row.isPass ? true : false" @click="del(scope.row)">通过该测试人员的申请</el-button>
+            <el-button size="mini" type="success" @click="pass(scope.row)">
+              {{scope.row.isPass ? '不通过' : '通过'}}
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
