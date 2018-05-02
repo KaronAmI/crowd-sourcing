@@ -30,7 +30,11 @@ export default new Vuex.Store({
     delApplication: '',
     updateApplication: '',
     getApplicationsForTester: '',
-    getApplicationsForProject: ''
+    getApplicationsForProject: '',
+    addDefect: '',
+    getDefects: '',
+    commit: '',
+    updateDefectById: ''
   },
   mutations,
   actions,

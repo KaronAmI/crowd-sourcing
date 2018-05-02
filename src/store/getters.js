@@ -20,5 +20,10 @@ export default {
   doneDelApplication: state => state.delApplication,
   doneUpdateApplication: state => state.updateApplication,
   doneGetApplicationsForTester: state => state.getApplicationsForTester,
-  doneGetApplicationsForProject: state => state.getApplicationsForProject
+  doneGetApplicationsForProject: state => state.getApplicationsForProject,
+  doneAddDefect: state => state.addDefect,
+  doneCommit: state => state.commit,
+  doneDelDefect: state => state.delDefect,
+  doneUpdateDefectById: state => state.updateDefectById,
+  doneGetDefects: state => state.getDefects
 }

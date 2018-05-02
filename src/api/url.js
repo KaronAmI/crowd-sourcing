@@ -68,6 +68,21 @@ export const findApi = (type) => {
     case 'getApplicationsForProject':
       url = `${host}/api/application/getApplicationsForProject`
       break
+    case 'addDefect':
+      url = `${host}/api/defect/addDefect`
+      break
+    case 'getDefects':
+      url = `${host}/api/defect/getDefects`
+      break
+    case 'commit':
+      url = `${host}/api/defect/commit`
+      break
+    case 'delDefect':
+      url = `${host}/api/defect/delDefect`
+      break
+    case 'updateDefectById':
+      url = `${host}/api/defect/updateDefectById`
+      break
   }
   return url
 }

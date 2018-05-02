@@ -6,6 +6,7 @@ const device = require('./server/actions/device.js')
 const project = require('./server/actions/project.js')
 const reward = require('./server/actions/reward.js')
 const application = require('./server/actions/application.js')
+const defect = require('./server/actions/defect.js')
 
 const app = new Koa()
 const router = new Router({
@@ -39,6 +40,11 @@ router.post('/application/delApplication', application.delApplication)
 router.post('/application/updateApplication', application.updateApplicationById)
 router.post('/application/getApplicationsForTester', application.getApplicationsForTester)
 router.post('/application/getApplicationsForProject', application.getApplicationsForProject)
+
+router.post('/defect/addDefect', defect.addDefect)
+router.post('/defect/getDefects', defect.getDefects)
+router.post('/defect/commit', defect.commit)
+router.post('/defect/delDefect', defect.delDefect)
 
 app.use(router.routes())
 

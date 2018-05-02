@@ -20,19 +20,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    type: {
-      type: DataTypes.INTEGER(11),
+    grade: {
+      type: DataTypes.STRING(11),
       allowNull: true
     },
     description: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    addTime: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    isUse: {
+    status: {
       type: DataTypes.INTEGER(1),
       allowNull: true
     },
