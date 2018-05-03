@@ -93,6 +93,22 @@ const updateProjectById = async (obj) => {
     error: false
   }
 }
+const updateProjectAppsrcById = async ({projectId, appsrc, fileName}) => {
+  console.log(projectId, appsrc)
+  await Project.update({
+      appsrc: appsrc,
+      fileName: fileName
+    }, {
+      where: {
+        id: projectId
+      }
+    }
+  )
+  return {
+    msg: '更新成功',
+    error: false
+  }
+}
 const publish = async (obj) => {
   await Project.update({
       isPublish: obj.isPublish,
@@ -116,6 +132,7 @@ const getProjectsByPublish = async () => {
   })
 }
 module.exports = {
+  updateProjectAppsrcById,
   delProjectByProjectId,
   getProjectsByCustomerId,
   getProjectByProjectId,

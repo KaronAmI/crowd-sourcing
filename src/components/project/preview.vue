@@ -55,6 +55,13 @@
         </el-table>
       </div>
     </div>
+
+    <div class="part" v-if="getProjectByProjectId.fileName || doneProject.fileName">
+      <div class="title">文件</div>
+      <div>
+        文件名：{{getProjectByProjectId.fileName || doneProject.fileName}} <el-button style="margin-left: 20px;" size="mini" @click="download">下载</el-button>
+      </div>
+    </div>
   </el-card>
 </template>
 
@@ -67,6 +74,14 @@ export default {
     },
     doneRewards () {
       return this.$store.getters.doneGetRewardsByProjectId || []
+    },
+    getProjectByProjectId () {
+      return this.$store.getters.doneGetProjectByProjectId
+    }
+  },
+  methods: {
+    download () {
+      window.open(this.getProjectByProjectId.appsrc || this.doneProject.appsrc)
     }
   }
 }

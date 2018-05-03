@@ -12,6 +12,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
+    appsrc: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    fileName: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
     customerId: {
       type: DataTypes.INTEGER(11),
       allowNull: true

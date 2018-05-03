@@ -31,6 +31,11 @@ const updateProjectById = async function (ctx) {
   const result = await project.updateProjectById(send)
   ctx.body = result
 }
+const updateProjectAppsrcById = async function (ctx) {
+  const send = ctx.request.body
+  const result = await project.updateProjectAppsrcById(send)
+  ctx.body = result
+}
 const publish = async function (ctx) {
   const send = ctx.request.body
   const result = await project.publish(send)
@@ -47,5 +52,6 @@ module.exports = {
   addProject,
   getProjectsByCustomerId,
   getProjectByProjectId,
-  updateProjectById
+  updateProjectById,
+  updateProjectAppsrcById
 }

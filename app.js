@@ -7,13 +7,23 @@ const project = require('./server/actions/project.js')
 const reward = require('./server/actions/reward.js')
 const application = require('./server/actions/application.js')
 const defect = require('./server/actions/defect.js')
+const file = require('./server/actions/file.js')
 
 const app = new Koa()
+const koaBody = require('koa-body')
+
 const router = new Router({
   prefix: '/api'
 })
 
-app.use(bodyParser())
+// app.use(bodyParser())
+
+app.use(koaBody({
+  multipart: true,
+  formidable: {
+      maxFileSize: 200*1024*1024	// 设置上传文件大小最大限制，默认2M
+  }
+}))
 
 router.get('/users', user.getUsers)
 router.post('/users/login', user.getUserByEmail)
@@ -29,6 +39,7 @@ router.post('/project/addProject', project.addProject)
 router.post('/project/getProjectsByCustomerId', project.getProjectsByCustomerId)
 router.post('/project/getProjectByProjectId', project.getProjectByProjectId)
 router.post('/project/updateProjectById', project.updateProjectById)
+router.post('/project/updateProjectAppsrcById', project.updateProjectAppsrcById)
 router.post('/project/delProjectByProjectId', project.delProjectByProjectId)
 
 router.post('/reward/addReward', reward.addReward)
@@ -48,6 +59,9 @@ router.post('/defect/getDefectsByCustomer', defect.getDefectsByCustomer)
 router.post('/defect/commit', defect.commit)
 router.post('/defect/delDefect', defect.delDefect)
 router.post('/defect/getDefectsByReport', defect.getDefectsByReport)
+
+router.post('/upload', file.upload)
+router.get('/download/:name', file.download)
 
 app.use(router.routes())
 

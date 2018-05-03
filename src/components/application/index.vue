@@ -30,6 +30,7 @@
           <template slot-scope="scope">
             <el-button size="mini" type="danger" @click="del(scope.row)">删除</el-button>
             <router-link :to="`/cs/project/detail/${scope.row.projectId}`"><el-button size="mini" type="success">项目详情</el-button></router-link>
+            <el-button size="mini" type="success" @click="download(scope.row.appsrc)" v-if="scope.row.isPass">下载安装包</el-button>
             <router-link :to="`/cs/defect/${scope.row.projectId}`"><el-button size="mini" type="primary" v-if="scope.row.isPass">填写缺陷报告</el-button></router-link>
           </template>
         </el-table-column>
@@ -89,6 +90,9 @@ export default {
         message: msg.msg,
         type: msg.error ? 'error' : 'success'
       })
+    },
+    download (src) {
+      window.open(src)
     }
   }
 }

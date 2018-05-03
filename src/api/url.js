@@ -38,6 +38,9 @@ export const findApi = (type) => {
     case 'updateProject':
       url = `${host}/api/project/updateProjectById`
       break
+    case 'updateProjectAppsrcById':
+      url = `${host}/api/project/updateProjectAppsrcById`
+      break
     case 'delProjectByProjectId':
       url = `${host}/api/project/delProjectByProjectId`
       break

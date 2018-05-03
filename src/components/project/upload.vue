@@ -1,15 +1,15 @@
 <template>
   <section class="cs-card">
     <section class="device-main">
+      <div class="fileName" v-if="getProjectByProjectId.fileName || doneProject.fileName">
+        已上传的文件：{{getProjectByProjectId.fileName || doneProject.fileName}} <el-button style="margin-left: 20px;" size="mini" @click="download">下载</el-button>
+      </div>
       <el-upload
+        :multiple="false"
         class="upload-demo"
-        action="https://jsonplaceholder.typicode.com/posts/"
-        :on-preview="handlePreview"
-        :on-remove="handleRemove"
-        :before-remove="beforeRemove"
-        :limit="1"
-        :on-exceed="handleExceed"
-        :file-list="fileList">
+        :data="{id: doneProject.id}"
+        :on-success="success"
+        action="http://localhost:8086/api/upload">
         <el-button size="small" plain>点击上传</el-button>
         <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>
@@ -20,18 +20,30 @@
 <script>
 export default {
   name: 'projectUpload',
+  computed: {
+    doneProject () {
+      return this.$store.getters.doneProject
+    },
+    getProjectByProjectId () {
+      return this.$store.getters.doneGetProjectByProjectId
+    }
+  },
   methods: {
-    handleRemove (file, fileList) {
-      console.log(file, fileList)
+    async project () {
+      const send = {}
+      send.projectId = this.doneProject.id
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getProjectByProjectId', params: send})
     },
-    handlePreview (file) {
-      console.log(file)
+    async success (response, file, fileList) {
+      const send = {}
+      send.projectId = this.doneProject.id
+      send.appsrc = response.path
+      send.fileName = response.fileName
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'updateProjectAppsrcById', params: send})
+      this.project()
     },
-    handleExceed (files, fileList) {
-      this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
-    },
-    beforeRemove (file, fileList) {
-      return this.$confirm(`确定移除 ${file.name}？`)
+    download () {
+      window.open(this.getProjectByProjectId.appsrc || this.doneProject.appsrc)
     }
   }
 }

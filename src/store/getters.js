@@ -25,6 +25,7 @@ export default {
   doneCommit: state => state.commit,
   doneDelDefect: state => state.delDefect,
   doneUpdateDefectById: state => state.updateDefectById,
+  doneUpdateProjectAppsrcById: state => state.updateProjectAppsrcById,
   doneGetDefects: state => state.getDefects,
   doneGetDefectsByReport: state => state.getDefectsByReport,
   doneGetDefectsByCustomer: state => state.getDefectsByCustomer
