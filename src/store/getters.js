@@ -26,5 +26,6 @@ export default {
   doneDelDefect: state => state.delDefect,
   doneUpdateDefectById: state => state.updateDefectById,
   doneGetDefects: state => state.getDefects,
+  doneGetDefectsByReport: state => state.getDefectsByReport,
   doneGetDefectsByCustomer: state => state.getDefectsByCustomer
 }

@@ -35,6 +35,7 @@ export default new Vuex.Store({
     getDefects: '',
     getDefectsByCustomer: '',
     commit: '',
+    getDefectsByReport: '',
     updateDefectById: ''
   },
   mutations,

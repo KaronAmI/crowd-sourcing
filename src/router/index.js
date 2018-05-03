@@ -11,6 +11,7 @@ import manageProjects from '@/components/project/manage'
 import publishProjects from '@/components/project/publish'
 import projectDetail from '@/components/project/detail'
 import applications from '@/components/application/index'
+import report from '@/components/report/index'
 
 Vue.use(Router)
 
@@ -48,6 +49,10 @@ const router = new Router({
         {
           path: 'myApplications',
           component: applications
+        },
+        {
+          path: 'report/:projectId',
+          component: report
         }
       ]
     },

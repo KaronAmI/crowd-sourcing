@@ -47,6 +47,7 @@ router.post('/defect/updateDefectById', defect.updateDefectById)
 router.post('/defect/getDefectsByCustomer', defect.getDefectsByCustomer)
 router.post('/defect/commit', defect.commit)
 router.post('/defect/delDefect', defect.delDefect)
+router.post('/defect/getDefectsByReport', defect.getDefectsByReport)
 
 app.use(router.routes())
 

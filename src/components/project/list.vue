@@ -32,6 +32,7 @@
             <el-button size="mini" type="primary" :disabled="scope.row.isPublish ? true : false" @click="edit(scope.row)">编辑</el-button>
             <el-button size="mini" type="primary" :disabled="scope.row.isPublish ? false : true" @click="getApplications(scope.row)">申请情况</el-button>
             <el-button size="mini" type="danger" @click="del(scope.row)">删除</el-button>
+            <router-link :to="`/cs/report/${scope.row.id}`"><el-button size="mini" type="warning">查看测试报告</el-button></router-link>
           </template>
         </el-table-column>
       </el-table>

@@ -5,6 +5,13 @@ const getDefects = async function (ctx) {
   const defects = await defect.getDefectsByProjectIdAndTesterId(send)
   ctx.body = defects
 }
+
+const getDefectsByReport = async function (ctx) {
+  const send = ctx.request.body
+  const defects = await defect.getDefectsByReport(send)
+  ctx.body = defects
+}
+
 const getDefectsByCustomer = async function (ctx) {
   const send = ctx.request.body
   const defects = await defect.getDefectsByCustomer(send)
@@ -52,6 +59,7 @@ const updateDefectById = async function (ctx) {
 }
 
 module.exports = {
+  getDefectsByReport,
   getDefectsByCustomer,
   updateDefectById,
   delDefect,
