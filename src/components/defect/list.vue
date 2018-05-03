@@ -17,19 +17,14 @@
           width="120">
         </el-table-column>
         <el-table-column
-          prop="type"
+          prop="grade"
           label="等级"
           width="120">
         </el-table-column>
         <el-table-column
-          prop="isUse"
+          prop="status"
           label="验收"
           width="120">
-          <template slot-scope="scope">
-            <span v-if="scope.row.status === 0">未验收</span>
-            <span v-else-if="scope.row.status === 1">采纳</span>
-            <span v-else>驳回</span>
-          </template>
         </el-table-column>
         <el-table-column
           label="操作">

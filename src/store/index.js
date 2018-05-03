@@ -33,6 +33,7 @@ export default new Vuex.Store({
     getApplicationsForProject: '',
     addDefect: '',
     getDefects: '',
+    getDefectsByCustomer: '',
     commit: '',
     updateDefectById: ''
   },

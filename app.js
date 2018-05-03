@@ -43,6 +43,8 @@ router.post('/application/getApplicationsForProject', application.getApplication
 
 router.post('/defect/addDefect', defect.addDefect)
 router.post('/defect/getDefects', defect.getDefects)
+router.post('/defect/updateDefectById', defect.updateDefectById)
+router.post('/defect/getDefectsByCustomer', defect.getDefectsByCustomer)
 router.post('/defect/commit', defect.commit)
 router.post('/defect/delDefect', defect.delDefect)
 

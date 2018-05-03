@@ -6,6 +6,7 @@ import register from '@/components/login/register'
 import login from '@/components/login/login'
 import device from '@/components/device/index'
 import defect from '@/components/defect/index'
+import check from '@/components/defect/check'
 import manageProjects from '@/components/project/manage'
 import publishProjects from '@/components/project/publish'
 import projectDetail from '@/components/project/detail'
@@ -27,6 +28,10 @@ const router = new Router({
         {
           path: 'defect/:projectId',
           component: defect
+        },
+        {
+          path: 'check/defect/:projectId/:testerId',
+          component: check
         },
         {
           path: 'projects/:page',

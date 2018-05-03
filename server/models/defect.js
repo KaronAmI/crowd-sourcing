@@ -4,11 +4,22 @@ const CsDb = db.cs
 
 const Defect = CsDb.import(defectModel)
 
-const getDefectsByProjectIdAndTesterId = async (obj) => {
+const getDefectsByProjectIdAndTesterId = async ({projectId, testerId}) => {
   const defects = await Defect.findAll({
     where: {
-      projectId: obj.projectId,
-      testerId: obj.testerId
+      projectId: projectId,
+      testerId: testerId
+    }
+  })
+  return defects
+}
+
+const getDefectsByCustomer = async ({projectId, testerId, isCommit}) => {
+  const defects = await Defect.findAll({
+    where: {
+      projectId: projectId,
+      testerId: testerId,
+      isCommit: true
     }
   })
   return defects
@@ -36,7 +47,7 @@ const addDefect = async (obj) => {
       testerId: obj.testerId,
       name: obj.name,
       description: obj.description,
-      status: 0,
+      status: '未处理',
       isCommit: false,
       grade: '无'
     })
@@ -62,23 +73,24 @@ const delDefectByDefectId = async (obj) => {
   })
 }
 
-const updateDefectById = async (obj) => {
+const updateDefectById = async ({id, name, status, grade}) => {
   await Defect.update({
-      name: obj.name,
-      description: obj.description
+      status: status,
+      grade: status === '通过' ? grade : '无' ,
     }, {
       where: {
-        id: obj.id
+        id: id
       }
     }
   )
   return {
-    msg: '更新成功',
+    msg: `鉴定${name}成功`,
     error: false
   }
 }
 
 module.exports = {
+  getDefectsByCustomer,
   delDefectByDefectId,
   getDefectsByProjectIdAndTesterId,
   updateDefectById,

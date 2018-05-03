@@ -5,7 +5,11 @@ const getDefects = async function (ctx) {
   const defects = await defect.getDefectsByProjectIdAndTesterId(send)
   ctx.body = defects
 }
-
+const getDefectsByCustomer = async function (ctx) {
+  const send = ctx.request.body
+  const defects = await defect.getDefectsByCustomer(send)
+  ctx.body = defects
+}
 const addDefect = async function (ctx) {
   const send = ctx.request.body
   const result = await defect.addDefect(send)
@@ -23,7 +27,6 @@ const addDefect = async function (ctx) {
 const commit = async function (ctx) {
   const send = ctx.request.body
   const result = await defect.commit(send)
-  console.log(result)
   ctx.body = {
     msg: '提交',
     error: false
@@ -49,6 +52,7 @@ const updateDefectById = async function (ctx) {
 }
 
 module.exports = {
+  getDefectsByCustomer,
   updateDefectById,
   delDefect,
   getDefects,

@@ -42,6 +42,7 @@
             <el-button size="mini" type="success" @click="pass(scope.row)">
               {{scope.row.isPass ? '不通过' : '通过'}}
             </el-button>
+            <router-link :to="`/cs/check/defect/${scope.row.projectId}/${scope.row.testerId}`"><el-button size="mini" type="primary" v-if="scope.row.isPass">查看缺陷报告</el-button></router-link>
           </template>
         </el-table-column>
       </el-table>

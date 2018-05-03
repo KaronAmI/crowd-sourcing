@@ -253,3 +253,39 @@
     text-decoration: underline;
   }
 }
+
+.cs-defect-part {
+  padding: 0 40px;
+  .header {
+    margin-bottom: 20px;
+    border-left: 4px solid $blue;
+    padding-left: 20px;
+    font-size: 14px;
+  }
+  .col {
+    line-height: 40px;
+    margin: 6px 0;
+    padding-left: 100px;
+    position: relative;
+  }
+  .name {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100px;
+    color: $textColor2;
+  }
+}
+
+.cs-defect-part + .cs-defect-part {
+  margin-top: 40px;
+}
+
+.cs-defect-part-footer {
+  padding-top: 20px;
+  border-top: 1px solid $borderColor0;
+  .commit {
+    float: right;
+  }
+}
