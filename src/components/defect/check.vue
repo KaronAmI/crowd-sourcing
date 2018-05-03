@@ -77,7 +77,7 @@ export default {
     },
     async appraisal () {
       let error = false
-      for (let i = 0; i < this.doneGetDefectsByCustomer.length; i++ ) {
+      for (let i = 0; i < this.doneGetDefectsByCustomer.length; i++) {
         await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'updateDefectById', params: this.doneGetDefectsByCustomer[i]})
         error = this.doneUpdateDefectById.error
         if (error) {
