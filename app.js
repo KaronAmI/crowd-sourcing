@@ -59,6 +59,7 @@ router.post('/defect/getDefectsByCustomer', defect.getDefectsByCustomer)
 router.post('/defect/commit', defect.commit)
 router.post('/defect/delDefect', defect.delDefect)
 router.post('/defect/getDefectsByReport', defect.getDefectsByReport)
+router.post('/defect/getDefectsBySettle', defect.getDefectsBySettle)
 
 router.post('/upload', file.upload)
 router.get('/download/:name', file.download)

@@ -6,7 +6,7 @@
     </el-header>
     <el-aside width="200px" class="cs-nav">
       <el-menu router class="cs-nav-menu">
-        <el-menu-item index="/cs/projects/1">
+        <el-menu-item index="/cs/projects">
           <span slot="title">项目大厅</span>
         </el-menu-item>
         <el-menu-item index="/cs/manageProjects" v-if="isCustomer">

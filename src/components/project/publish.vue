@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="10" class="cs-project-publishProjects" :loading="loading">
-    <el-col class="publishProject" :span="8" v-for="opp in donePublishProjects" :key="opp.name">
+    <el-col class="publishProject" :span="8" v-for="opp in donePublishProjects" :key="opp.name" v-if="opp.isInTime">
       <el-card>
         <div class="info">
           <div class="col"><span class="title">项目名称：</span><div class="value">{{opp.name}}</div></div>
@@ -8,6 +8,12 @@
           <div class="col"><span class="title">系统版本要求：</span><div class="value">{{opp.osVersion}}</div></div>
           <div class="col"><span class="title">手机名要求：</span><div class="value">{{opp.phoneName}}</div></div>
           <div class="col"><span class="title">测试人数：</span><div class="value">{{opp.testerNumber}}</div></div>
+          <div class="col">
+            <span class="title">测试时间：</span>
+            <div class="value">
+              {{opp.start | formatTime}} - {{opp.end | formatTime}}
+            </div>
+          </div>
           <div class="col"><span class="title">发布时间：</span><div class="value">{{opp.releaseTime | formatTime}}</div></div>
           <div class="col opr">
             <router-link :to="`/cs/project/detail/${opp.id}`"><el-button size="mini">详情</el-button></router-link>
@@ -20,6 +26,7 @@
 </template>
 
 <script>
+import { formatPublishProjects } from '@/utils'
 export default {
   name: 'publishProject',
   data () {
@@ -41,7 +48,7 @@ export default {
       return this.login.type === 'customer'
     },
     donePublishProjects () {
-      return this.$store.getters.donePublishProjects || []
+      return formatPublishProjects(this.$store.getters.donePublishProjects) || []
     },
     doneAddApplication () {
       return this.$store.getters.doneAddApplication || []

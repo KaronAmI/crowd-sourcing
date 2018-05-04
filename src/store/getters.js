@@ -28,5 +28,6 @@ export default {
   doneUpdateProjectAppsrcById: state => state.updateProjectAppsrcById,
   doneGetDefects: state => state.getDefects,
   doneGetDefectsByReport: state => state.getDefectsByReport,
+  doneGetDefectsBySettle: state => state.getDefectsBySettle,
   doneGetDefectsByCustomer: state => state.getDefectsByCustomer
 }

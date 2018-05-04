@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import router from '@/router'
 import top from './top'
 export default {
   name: 'register',
@@ -61,12 +62,16 @@ export default {
       send.email = this.email
       send.password = this.password
       send.type = this.type
+      send.integral = this.type === 'tester' ? 0 : 10000
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'register', params: send})
       this.$message({
         message: this.doneRegister.msg,
         type: this.doneRegister.error ? 'error' : 'success'
       })
       this.loading = false
+      if (!this.doneRegister.error) {
+        router.push({path: '/cs/login'})
+      }
     }
   }
 }

@@ -1,4 +1,6 @@
 const db = require('../config/db.js')
+
+const Project = require('./project.js')
 const applicationModel = '../schema/applications.js'
 const CsDb = db.cs
 
@@ -39,12 +41,22 @@ const addApplication = async function (obj) {
       msg: 'existing'
     }
   } else {
-    return await Application.create({
-      projectId: obj.projectId,
-      testerId: obj.testerId,
-      auditTime: obj.auditTime,
-      isPass: obj.isPass
-    })
+    const project = await Project.getProjectByProjectId(obj)
+    const testerNumber = project.testerNumber
+    const applications = await getApplicationByProjectId(obj)
+    const applicationsLen = applications.length
+    if (applicationsLen < testerNumber) {
+      return await Application.create({
+        projectId: obj.projectId,
+        testerId: obj.testerId,
+        auditTime: obj.auditTime,
+        isPass: obj.isPass
+      })
+    } else {
+      return {
+        msg: 'full'
+      }
+    }
   }
 }
 

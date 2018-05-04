@@ -16,6 +16,7 @@ const getUserByEmail = async function (ctx) {
         id: result.id,
         email: result.email,
         type: result.type,
+        integral: result.integral,
         msg: '登录成功'
       }
     } else {

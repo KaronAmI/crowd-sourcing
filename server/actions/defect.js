@@ -58,7 +58,14 @@ const updateDefectById = async function (ctx) {
   ctx.body = result
 }
 
+const getDefectsBySettle = async function (ctx) {
+  const send = ctx.request.body
+  const result = await defect.getDefectsBySettle(send)
+  ctx.body = result
+}
+
 module.exports = {
+  getDefectsBySettle,
   getDefectsByReport,
   getDefectsByCustomer,
   updateDefectById,

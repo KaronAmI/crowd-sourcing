@@ -39,10 +39,9 @@
           label="操作">
           <template slot-scope="scope">
             <el-button size="mini" type="danger" @click="del(scope.row)">删除</el-button>
-            <el-button size="mini" type="success" @click="pass(scope.row)">
-              {{scope.row.isPass ? '不通过' : '通过'}}
-            </el-button>
+            <el-button size="mini" type="success" @click="pass(scope.row)">{{scope.row.isPass ? '不通过' : '通过'}}</el-button>
             <router-link :to="`/cs/check/defect/${scope.row.projectId}/${scope.row.testerId}`"><el-button size="mini" type="primary" v-if="scope.row.isPass">查看缺陷报告</el-button></router-link>
+            <el-button size="mini" type="warning" v-if="scope.row.isOutTime" @click="settle(scope.row)">结算</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -51,6 +50,7 @@
 </template>
 
 <script>
+import { formatApplicationsForProject } from '@/utils'
 export default {
   name: 'projectApplications',
   computed: {
@@ -58,7 +58,7 @@ export default {
       return this.$store.getters.doneLogin
     },
     applications () {
-      return this.$store.getters.doneGetApplicationsForProject || []
+      return formatApplicationsForProject(this.$store.getters.doneGetApplicationsForProject) || []
     },
     delApplication () {
       return this.$store.getters.doneDelApplication
@@ -103,6 +103,21 @@ export default {
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'updateApplication', params: send})
       this.getApplications(application.projectId)
       this.showMsg(this.updateApplication)
+    },
+    async getRewards (application) {
+      const send = {}
+      send.projectId = application.id
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getRewardsByProjectId', params: send})
+    },
+    async getDefectsBySettle (application) {
+      const send = {}
+      send.projectId = application.id
+      send.testerId = application.testerId
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getDefectsBySettle', params: send})
+    },
+    async settle (application) {
+      this.getDefectsBySettle(application)
+      this.getRewards(application)
     },
     showMsg (msg) {
       this.$message({

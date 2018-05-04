@@ -14,11 +14,13 @@ export default {
             sessionStorage.setItem('cs-user-email', null)
             sessionStorage.setItem('cs-user-type', null)
             sessionStorage.setItem('cs-user-msg', null)
+            sessionStorage.setItem('cs-user-integral', null)
           } else {
             sessionStorage.setItem('cs-user-id', data.id)
             sessionStorage.setItem('cs-user-email', data.email)
             sessionStorage.setItem('cs-user-type', data.type)
             sessionStorage.setItem('cs-user-msg', data.msg)
+            sessionStorage.setItem('cs-user-integral', data.integral)
           }
         }
         commit('setState', {type, data})

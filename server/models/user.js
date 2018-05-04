@@ -37,7 +37,8 @@ const addUser = async function (user) {
       name: user.name,
       email: user.email,
       type: user.type,
-      password: user.password
+      password: user.password,
+      integral: user.integral
     })
     return {
       error: false,

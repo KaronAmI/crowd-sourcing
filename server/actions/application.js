@@ -18,9 +18,14 @@ const addApplication = async function (ctx) {
   const send = ctx.request.body
   const result = await application.addApplication(send)
   let msg = {}
-  if (result.msg) {
+  if (result.msg === 'existing') {
     msg = {
       msg: '请不要重复申请该项目',
+      error: true
+    }
+  } else if (result.msg === 'full') {
+    msg = {
+      msg: '申请人数已满',
       error: true
     }
   } else {

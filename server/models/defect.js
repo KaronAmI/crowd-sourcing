@@ -24,6 +24,17 @@ const getDefectsByReport = async ({projectId}) => {
   return defects
 }
 
+const getDefectsBySettle = async ({projectId, testerId}) => {
+  const defects = await Defect.findAll({
+    where: {
+      projectId: projectId,
+      testerId: testerId,
+      status: '通过'
+    }
+  })
+  return defects
+}
+
 const getDefectsByCustomer = async ({projectId, testerId, isCommit}) => {
   const defects = await Defect.findAll({
     where: {
@@ -102,6 +113,7 @@ const updateDefectById = async ({id, name, status, grade}) => {
 module.exports = {
   getDefectsByCustomer,
   getDefectsByReport,
+  getDefectsBySettle,
   delDefectByDefectId,
   getDefectsByProjectIdAndTesterId,
   updateDefectById,

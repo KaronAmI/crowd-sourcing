@@ -48,7 +48,7 @@ export default {
       send.password = this.password
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'login', params: send})
       if (!this.donelogin.error) {
-        router.push({path: '/cs/projects/1'})
+        router.push({path: '/cs/projects'})
       } else {
         this.$message.error(this.donelogin.msg)
       }
