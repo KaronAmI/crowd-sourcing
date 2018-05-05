@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.21)
 # Database: cs
-# Generation Time: 2018-05-05 11:36:14 +0000
+# Generation Time: 2018-05-05 21:32:14 +0000
 # ************************************************************
 
 
@@ -40,11 +40,8 @@ LOCK TABLES `applications` WRITE;
 
 INSERT INTO `applications` (`id`, `projectId`, `testerId`, `auditTime`, `isPass`, `isSettle`)
 VALUES
-	(37,15,9,'2018-05-05 05:59:00',1,1),
-	(38,15,14,'2018-05-05 05:59:19',1,1),
-	(39,16,14,'2018-05-05 06:25:51',1,1),
-	(40,17,9,'2018-05-05 07:17:24',0,NULL),
-	(41,17,15,'2018-05-05 07:44:43',0,NULL);
+	(43,15,16,'2018-05-05 20:29:31',0,NULL),
+	(44,16,15,'2018-05-05 21:28:25',0,NULL);
 
 /*!40000 ALTER TABLE `applications` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -67,19 +64,6 @@ CREATE TABLE `defects` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `defects` WRITE;
-/*!40000 ALTER TABLE `defects` DISABLE KEYS */;
-
-INSERT INTO `defects` (`id`, `projectId`, `testerId`, `name`, `status`, `description`, `isCommit`, `grade`)
-VALUES
-	(3,15,9,'缺陷a','通过','缺陷a',1,'S'),
-	(4,15,9,'缺陷b','通过','缺陷b',1,'A'),
-	(5,15,9,'缺陷c','驳回','缺陷c',1,'无'),
-	(6,15,14,'abc','通过','abc',1,'S'),
-	(7,16,14,'222','通过','222',1,'S');
-
-/*!40000 ALTER TABLE `defects` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table devices
@@ -104,7 +88,9 @@ INSERT INTO `devices` (`id`, `name`, `os`, `osVersion`, `manufacturer`, `testerI
 VALUES
 	(1,'a','android','a','a',14),
 	(2,'a','android','a','a',9),
-	(4,'a','android','a','a',15);
+	(5,'华为','android','1','1',16),
+	(6,'苹果','ios','1','2',9),
+	(7,'苹果','ios','1','2',15);
 
 /*!40000 ALTER TABLE `devices` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -139,12 +125,13 @@ LOCK TABLES `projects` WRITE;
 
 INSERT INTO `projects` (`id`, `customerId`, `name`, `releaseTime`, `description`, `start`, `end`, `isExamine`, `isPublish`, `os`, `osVersion`, `phoneName`, `testerNumber`, `appsrc`, `fileName`)
 VALUES
-	(15,10,'项目1','2018-05-05 05:57:48','1','2018-05-03 16:00:00','2018-05-08 16:00:00',1,1,'android','1','华为',2,'/api/download/demon-hell-fire-wings-artwork-fantasy-20138.jpg','demon-hell-fire-wings-artwork-fantasy-20138.jpg'),
-	(16,10,'项目2','2018-05-05 05:58:27','2','2018-05-03 16:00:00','2018-05-08 16:00:00',1,1,'ios','1','苹果',1,NULL,NULL),
-	(17,10,'a','2018-05-05 07:17:10','a','2018-05-03 16:00:00','2018-06-03 16:00:00',1,1,'android','1','华为',2,NULL,NULL),
-	(18,10,'perfect','2018-05-05 08:33:15','perfect lo','2018-05-03 16:00:00','2018-06-02 16:00:00',1,1,'android','8.0','魅族',12,NULL,NULL),
+	(15,10,'项目1','2018-05-05 21:28:06','1','2018-05-03 16:00:00','2018-05-08 16:00:00',1,1,'android','1','华为',1,'/api/download/demon-hell-fire-wings-artwork-fantasy-20138.jpg','demon-hell-fire-wings-artwork-fantasy-20138.jpg'),
+	(16,10,'项目2','2018-05-05 21:28:17','2','2018-05-03 16:00:00','2018-05-08 16:00:00',1,1,'ios','1','苹果',1,NULL,NULL),
+	(17,10,'a','2018-05-05 21:28:54','a','2018-05-03 16:00:00','2018-06-03 16:00:00',1,1,'android','1','华为',2,NULL,NULL),
+	(18,10,'perfect','2018-05-05 21:29:01','perfect lo','2018-05-03 16:00:00','2018-06-02 16:00:00',1,1,'android','8.0','魅族',12,NULL,NULL),
 	(19,10,'55',NULL,'33','2018-05-02 16:00:00','2018-05-03 16:00:00',1,0,'android','33','33',3,NULL,NULL),
-	(20,10,'b','2018-05-05 08:43:00','b','2018-05-11 16:00:00','2018-05-18 16:00:00',1,1,'ios','b','b',222,NULL,NULL);
+	(20,10,'b','2018-05-05 08:43:00','b','2018-05-11 16:00:00','2018-05-18 16:00:00',1,0,'ios','b','b',222,NULL,NULL),
+	(21,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -163,20 +150,6 @@ CREATE TABLE `rewards` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `rewards` WRITE;
-/*!40000 ALTER TABLE `rewards` DISABLE KEYS */;
-
-INSERT INTO `rewards` (`id`, `projectId`, `grade`, `reward`)
-VALUES
-	(52,15,'S',20),
-	(53,15,'A',18),
-	(54,15,'B',16),
-	(55,15,'C',14),
-	(56,16,'S',100),
-	(57,16,'A',50);
-
-/*!40000 ALTER TABLE `rewards` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table users
@@ -203,7 +176,8 @@ VALUES
 	(9,'karon','1',NULL,'tester1','tester',114),
 	(10,'2','1',NULL,'customer','customer',9766),
 	(14,'3','1',NULL,'tester2','tester',120),
-	(15,'5','1',NULL,'tester3','tester',0);
+	(15,'5','1',NULL,'tester3','tester',0),
+	(16,'6','1',NULL,'tester5','tester',130);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
