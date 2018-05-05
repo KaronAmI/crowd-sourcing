@@ -19,6 +19,13 @@
           </template>
         </el-table-column>
         <el-table-column
+          label="项目状态"
+          width="120">
+          <template slot-scope="scope">
+            <el-tag type="primary">{{scope.row.projectStatus}}</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column
           label="测试时间"
           width="120">
           <template slot-scope="scope">
@@ -28,9 +35,9 @@
         <el-table-column
           label="操作">
           <template slot-scope="scope">
-            <el-button size="mini" type="success" :disabled="scope.row.isPublish ? true : false" @click="publish(scope.row)">发布</el-button>
-            <el-button size="mini" type="primary" :disabled="scope.row.isPublish ? true : false" @click="edit(scope.row)">编辑</el-button>
-            <el-button size="mini" type="primary" :disabled="scope.row.isPublish ? false : true" @click="getApplications(scope.row)">申请情况</el-button>
+            <el-button size="mini" type="success" :disabled="scope.row.isOutTime || scope.row.isPublish" @click="publish(scope.row)">发布</el-button>
+            <el-button size="mini" type="primary" :disabled="scope.row.isPublish" @click="edit(scope.row)">编辑</el-button>
+            <el-button size="mini" type="primary" :disabled="scope.row.isPublish" @click="getApplications(scope.row)">申请情况</el-button>
             <el-button size="mini" type="danger" @click="del(scope.row)">删除</el-button>
             <router-link :to="`/cs/report/${scope.row.id}`" style="margin-left:10px;"><el-button size="mini" type="warning">查看测试报告</el-button></router-link>
           </template>
@@ -41,6 +48,7 @@
 </template>
 
 <script>
+import { formatPublishProjects } from '@/utils'
 export default {
   name: 'projectList',
   computed: {
@@ -51,7 +59,7 @@ export default {
       return this.$store.getters.donePublish
     },
     doneProjectsForCustomer () {
-      return this.$store.getters.doneProjectsForCustomer || []
+      return formatPublishProjects(this.$store.getters.doneProjectsForCustomer) || []
     },
     doneDelProjectByProjectId () {
       return this.$store.getters.doneDelProjectByProjectId

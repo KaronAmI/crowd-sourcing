@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="cs-search">
-      <el-input v-model="search" placeholder="请输入内容项目名、系统类别或者手机名称" clearable @clear="doFetch"></el-input>
+      <el-input v-model="search" placeholder="请输入内容项目名、系统类别或者手机名称" clearable @clear="doFetch" @keyup.enter.native="searchProject"></el-input>
       <el-button type="primary" @click="searchProject">搜索</el-button>
     </div>
     <el-row :gutter="10" class="cs-project-publishProjects" :loading="loading">
-      <el-col class="publishProject" :span="8" v-for="opp in all" :key="opp.name" v-if="opp.isInTime">
+      <el-col class="publishProject" :span="8" v-for="opp in all" :key="opp.name">
         <el-card>
           <div class="info">
             <div class="col"><span class="title">项目名称：</span><div class="value">{{opp.name}}</div></div>
@@ -20,9 +20,10 @@
               </div>
             </div>
             <div class="col"><span class="title">发布时间：</span><div class="value">{{opp.releaseTime | formatTime}}</div></div>
+            <div class="col"><span class="title">项目状态：</span><div class="value projectStatus">{{opp.projectStatus}}</div></div>
             <div class="col opr">
               <router-link :to="`/cs/project/detail/${opp.id}`"><el-button size="mini">详情</el-button></router-link>
-              <el-button size="mini" type="success" v-if="isTester" @click="apply(opp)">申请</el-button>
+              <el-button size="mini" type="success" v-if="isTester" @click="apply(opp)" :disabled="opp.projectStatus === '未开始'">申请</el-button>
             </div>
           </div>
         </el-card>
@@ -88,8 +89,8 @@ export default {
     async doFetch () {
       this.loading = true
       await this.$store.dispatch('fetchByMethod', {method: 'get', type: 'publishProjects'})
-      this.all = formatPublishProjects(this.$store.getters.donePublishProjects)
       await this.fetchDevices()
+      this.all = formatPublishProjects(this.$store.getters.donePublishProjects)
       this.loading = false
     },
     async apply ({id, isExamine, os, osVersion, phoneName}) {
