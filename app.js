@@ -96,7 +96,6 @@ io.sockets.on('connection', (socket) => {
   let socketCut = []
   socket.on('login', async (user) => {
     socketKeys = await findTopTwenty(user, socket)
-    console.log('socketKeys', socketKeys)
   })
   socket.on('publish', async (project) => {
     for (let id in socketKeys) {
@@ -112,7 +111,6 @@ io.sockets.on('connection', (socket) => {
         socketKeys[id] = socket[id]
       }
     }
-    console.log('socketKeys', socketKeys)
     for (let id in socketKeys) {
       const send = {}
       send.testerId = id
