@@ -11,6 +11,10 @@ import store from './store'
 import Element from 'element-ui'
 import 'normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
+import VueSocketio from 'vue-socket.io'
+import socketio from 'socket.io-client'
+
+Vue.use(VueSocketio, socketio('http://localhost:3000'))
 
 Vue.config.productionTip = false
 Vue.use(Element)

@@ -1,6 +1,6 @@
 <template>
   <el-card class="cs-card cs-card-list" :body-style="{'padding': '0'}">
-    <div class="header">草稿箱项目列表</div>
+    <div class="header">草稿箱项目列表 <el-button @click="test">推送</el-button></div>
     <div class="bd">
       <el-table
         :data="doneProjectsForCustomer"
@@ -35,9 +35,9 @@
         <el-table-column
           label="操作">
           <template slot-scope="scope">
-            <el-button size="mini" type="success" :disabled="scope.row.isOutTime || scope.row.isPublish" @click="publish(scope.row)">发布</el-button>
-            <el-button size="mini" type="primary" :disabled="scope.row.isPublish" @click="edit(scope.row)">编辑</el-button>
-            <el-button size="mini" type="primary" :disabled="scope.row.isPublish" @click="getApplications(scope.row)">申请情况</el-button>
+            <el-button size="mini" type="success" :disabled="scope.row.isOutTime || (scope.row.isPublish ? true : false)" @click="publish(scope.row)">发布</el-button>
+            <el-button size="mini" type="primary" :disabled="(scope.row.isPublish ? true : false)" @click="edit(scope.row)">编辑</el-button>
+            <el-button size="mini" type="primary" :disabled="(scope.row.isPublish ? true : false)" @click="getApplications(scope.row)">申请情况</el-button>
             <el-button size="mini" type="danger" @click="del(scope.row)">删除</el-button>
             <router-link :to="`/cs/report/${scope.row.id}`" style="margin-left:10px;"><el-button size="mini" type="warning">查看测试报告</el-button></router-link>
           </template>
@@ -87,7 +87,15 @@ export default {
       return M + D + Y
     }
   },
+  sockets: {
+    // connect: function () {
+    //   console.log('socket connected')
+    // }
+  },
   methods: {
+    test () {
+      this.$socket.emit('test', this.doneProjectsForCustomer)
+    },
     async doFetch () {
       const send = {}
       send.customerId = this.customerId

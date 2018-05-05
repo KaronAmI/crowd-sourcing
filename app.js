@@ -10,6 +10,9 @@ const defect = require('./server/actions/defect.js')
 const file = require('./server/actions/file.js')
 
 const app = new Koa()
+const server = require('http').createServer(app.callback())
+const io = require('socket.io')(server)
+
 const koaBody = require('koa-body')
 
 const router = new Router({
@@ -70,6 +73,13 @@ router.get('/download/:name', file.download)
 
 app.use(router.routes())
 
-app.listen(3000, () => {
+io.sockets.on('connection', (socket) => {
+  socket.on('test', (name) => {
+    console.log(name)
+    socket.broadcast.emit('login', name)
+  })
+})
+
+server.listen(3000, () => {
   console.log('koa is listening in 3000')
 })

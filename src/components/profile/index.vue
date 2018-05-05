@@ -36,6 +36,14 @@ export default {
   mounted () {
     this.doFetch()
   },
+  sockets: {
+    connect: function () {
+      console.log('socket connected')
+    },
+    login (val) {
+      console.log(val)
+    }
+  },
   methods: {
     async doFetch () {
       const send = {}
