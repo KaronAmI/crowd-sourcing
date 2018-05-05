@@ -35,5 +35,8 @@ export default {
   },
   setState ({commit}, {type, data}) {
     commit('setState', {type, data})
+  },
+  pushState ({commit}, {type, data}) {
+    commit('pushState', {type, data})
   }
 }

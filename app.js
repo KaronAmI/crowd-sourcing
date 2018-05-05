@@ -2,7 +2,9 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
 const user = require('./server/actions/user.js')
+const userModel = require('./server/models/user')
 const device = require('./server/actions/device.js')
+const deviceModel = require('./server/models/device')
 const project = require('./server/actions/project.js')
 const reward = require('./server/actions/reward.js')
 const application = require('./server/actions/application.js')
@@ -73,10 +75,58 @@ router.get('/download/:name', file.download)
 
 app.use(router.routes())
 
+const socketsInfo = {}
+const result = {}
+
+const findTopTwenty = async (user, socket) => {
+  socketsInfo[user.id] = socket.id
+  let users = await userModel.getUsers()
+  for (let id in socketsInfo) {
+    users.forEach((user, index) => {
+      if (user.dataValues.id == id) {
+        result[id] = socketsInfo[id]
+      }
+    })
+  }
+  return result
+}
+
 io.sockets.on('connection', (socket) => {
-  socket.on('test', (name) => {
-    console.log(name)
-    socket.broadcast.emit('login', name)
+  let socketKeys = {}
+  let socketCut = []
+  socket.on('login', async (user) => {
+    socketKeys = await findTopTwenty(user, socket)
+    console.log('socketKeys', socketKeys)
+  })
+  socket.on('publish', async (project) => {
+    for (let id in socketKeys) {
+      const obj = {}
+      obj[id] = socketKeys[id]
+      socketCut.push(obj)
+    }
+    const num = project.testerNumber * 2
+    socketCut = socketCut.slice(0, num)
+    socketKeys = {}
+    for (let socket of socketCut) {
+      for (let id in socket) {
+        socketKeys[id] = socket[id]
+      }
+    }
+    console.log('socketKeys', socketKeys)
+    for (let id in socketKeys) {
+      const send = {}
+      send.testerId = id
+      const devices = await deviceModel.getDeviceByTesterId(send)
+      for (let d of devices) {
+        if (d.os === project.os &&
+          d.osVersion === project.osVersion &&
+          d.name === project.phoneName) {
+            const key = socketKeys[id]
+            const curSocket = io.sockets.sockets[key]
+            curSocket && curSocket.emit('projects', project)
+          }
+      }
+    }
   })
 })
 

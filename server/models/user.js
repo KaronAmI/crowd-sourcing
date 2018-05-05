@@ -5,7 +5,14 @@ const CsDb = db.cs
 const User = CsDb.import(userModel)
 
 const getUsers = async function () {
-  return await User.findAll()
+  return await User.findAll({
+    where: {
+      type: 'tester'
+    },
+    order: [
+      ['integral', 'DESC']
+    ]
+  })
 }
 
 const getUserByEmail = async function (obj) {

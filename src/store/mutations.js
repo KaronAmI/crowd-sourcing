@@ -4,6 +4,9 @@ export default {
   setState (state, {type, data}) {
     state[type] = data
   },
+  pushState (state, {type, data}) {
+    state[type].push(data)
+  },
   setRewards (state, {data}) {
     state.rewards.push(data)
   },

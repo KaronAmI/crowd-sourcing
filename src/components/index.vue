@@ -45,6 +45,19 @@ export default {
     isCustomer () {
       return this.login.type === 'customer'
     }
+  },
+  sockets: {
+    connect () {
+      this.$socket.emit('login', this.login)
+    },
+    async projects (val) {
+      await this.$store.dispatch('pushState', {type: 'news', data: val})
+      this.$notify({
+        title: '提示',
+        message: '您有一条新的推送，请前往个人中心查看',
+        duration: 0
+      })
+    }
   }
 }
 </script>

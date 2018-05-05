@@ -1,6 +1,6 @@
 <template>
   <el-card class="cs-card cs-card-list" :body-style="{'padding': '0'}">
-    <div class="header">草稿箱项目列表 <el-button @click="test">推送</el-button></div>
+    <div class="header">草稿箱项目列表</div>
     <div class="bd">
       <el-table
         :data="doneProjectsForCustomer"
@@ -87,15 +87,7 @@ export default {
       return M + D + Y
     }
   },
-  sockets: {
-    // connect: function () {
-    //   console.log('socket connected')
-    // }
-  },
   methods: {
-    test () {
-      this.$socket.emit('test', this.doneProjectsForCustomer)
-    },
     async doFetch () {
       const send = {}
       send.customerId = this.customerId
@@ -118,6 +110,7 @@ export default {
       if (this.doneProject.id === project.id) {
         project.isPublish = true
       }
+      this.$socket.emit('publish', project)
     },
     async del (project) {
       const send = {}

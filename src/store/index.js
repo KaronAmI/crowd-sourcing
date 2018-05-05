@@ -42,7 +42,8 @@ export default new Vuex.Store({
     getDefectsBySettle: '',
     updateIntegral: '',
     getUserInfo: '',
-    updateApplicationBySettle: ''
+    updateApplicationBySettle: '',
+    news: []
   },
   mutations,
   actions,

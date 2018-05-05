@@ -1,4 +1,5 @@
 export default {
+  doneNews: state => state.news,
   doneRegister: state => state.register,
   doneGetUserInfo: state => state.getUserInfo,
   doneSearchProjects: state => state.searchProjects,
