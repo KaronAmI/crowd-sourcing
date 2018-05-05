@@ -29,15 +29,10 @@
         <div>共计：{{doneGetDefectsByReport.length}} 个</div>
       </div>
     </el-card>
-    <!-- <div class="tc">
-      <el-button type="primary" @click="download()">下载报告</el-button>
-    </div> -->
   </div>
 </template>
 
 <script>
-// import PDF from 'jspdf'
-// import autoTable from 'jspdf-autotable'
 
 export default {
   name: 'defectListReport',
@@ -58,13 +53,6 @@ export default {
       send.projectId = this.projectId
       send.testerId = this.testerId
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getDefectsByReport', params: send})
-    },
-    download () {
-      // var doc = new PDF()
-      // doc.addFont('NotoSansCJKtc-Regular.ttf', 'NotoSansCJKtc', 'normal');
-      // doc.setFont('NotoSansCJKtc')
-      // doc.text(15, 45, '早上好。 很高兴见到你')
-      // doc.save('custom_fonts.pdf')
     }
   }
 }

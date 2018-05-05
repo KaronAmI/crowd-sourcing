@@ -26,12 +26,20 @@ export const formatPublishProjects = (projects) => {
 export const formatApplicationsForProject = (projects) => {
   const now = new Date().getTime()
   let end = ''
+  let start = ''
   for (let p of projects) {
+    start = new Date(p.start).getTime()
     end = new Date(p.end).getTime()
-    if (now >= end) {
+
+    if (now >= start && now <= end) {
+      p.isOutTime = false
+      p.projectStatus = '进行中'
+    } else if (now > end) {
       p.isOutTime = true
+      p.projectStatus = '已结束'
     } else {
       p.isOutTime = false
+      p.projectStatus = '未开始'
     }
   }
   return projects

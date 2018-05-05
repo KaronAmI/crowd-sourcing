@@ -23,6 +23,10 @@ module.exports = function(sequelize, DataTypes) {
     isPass: {
       type: DataTypes.INTEGER(1),
       allowNull: true
+    },
+    isSettle: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true
     }
   }, {
     tableName: 'applications'

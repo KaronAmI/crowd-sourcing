@@ -11,6 +11,12 @@ export const findApi = (type) => {
     case 'register':
       url = `${host}/api/users/register`
       break
+    case 'updateIntegral':
+      url = `${host}/api/users/updateIntegralByUserId`
+      break
+    case 'getUserInfo':
+      url = `${host}/api/users/getUserInfoByEmail`
+      break
     case 'login':
       url = `${host}/api/users/login`
       break
@@ -34,6 +40,9 @@ export const findApi = (type) => {
       break
     case 'projectsForCustomer':
       url = `${host}/api/project/getProjectsByCustomerId`
+      break
+    case 'searchProjects':
+      url = `${host}/api/project/searchProjects`
       break
     case 'updateProject':
       url = `${host}/api/project/updateProjectById`
@@ -64,6 +73,9 @@ export const findApi = (type) => {
       break
     case 'updateApplication':
       url = `${host}/api/application/updateApplication`
+      break
+    case 'updateApplicationBySettle':
+      url = `${host}/api/application/updateApplicationBySettle`
       break
     case 'getApplicationsForTester':
       url = `${host}/api/application/getApplicationsForTester`

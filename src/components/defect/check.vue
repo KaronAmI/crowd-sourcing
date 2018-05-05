@@ -11,7 +11,7 @@
         <div class="col"><span class="name">缺陷内容：</span><p>{{defect.description}}</p></div>
         <div class="col"><span class="name">当前状态：</span><p>{{defect.status}}</p></div>
         <div class="col"><span class="name">更新状态：</span>
-          <el-select v-model="defect.status" placeholder="请选择">
+          <el-select :disabled="isOutTime" v-model="defect.status" placeholder="请选择">
             <el-option label="未处理" value="未处理"></el-option>
             <el-option label="通过" value="通过"></el-option>
             <el-option label="驳回" value="驳回"></el-option>
@@ -19,13 +19,13 @@
         </div>
         <div class="col" v-if="defect.status === '通过'">
           <span class="name">评级：</span>
-          <el-select v-model="defect.grade" placeholder="请选择">
+          <el-select :disabled="isOutTime" v-model="defect.grade" placeholder="请选择">
             <el-option :label="reward.grade" :value="reward.grade" v-for="reward in doneRewards" :key="reward.id"></el-option>
           </el-select>
         </div>
       </section>
       <section class="cs-defect-part cs-defect-part-footer">
-        <el-button class="commit" plain size="mini" type="primary" @click="appraisal">提交鉴定</el-button>
+        <el-button class="commit" plain size="mini" type="primary" :disabled="isOutTime" @click="appraisal">提交鉴定</el-button>
       </section>
     </el-card>
   </div>
@@ -59,6 +59,18 @@ export default {
     },
     doneRewards () {
       return this.$store.getters.doneGetRewardsByProjectId || []
+    },
+    doneProject () {
+      return this.$store.getters.doneGetProjectByProjectId || []
+    },
+    isOutTime () {
+      const now = new Date().getTime()
+      const end = new Date(this.doneProject.end).getTime()
+      if (now > end) {
+        return true
+      } else {
+        return false
+      }
     }
   },
   mounted () {
@@ -74,6 +86,7 @@ export default {
       send.testerId = this.testerId
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getDefectsByCustomer', params: send})
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getRewardsByProjectId', params: send})
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getProjectByProjectId', params: send})
     },
     async appraisal () {
       let error = false

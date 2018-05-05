@@ -83,7 +83,23 @@ const updateApplicationById = async (obj) => {
   }
 }
 
+const updateApplicationBySettle = async (obj) => {
+  await Application.update({
+      isSettle: obj.isSettle
+    }, {
+      where: {
+        id: obj.id
+      }
+    }
+  )
+  return {
+    msg: '结算成功',
+    error: false
+  }
+}
+
 module.exports = {
+  updateApplicationBySettle,
   getApplicationByProjectIdAndTesterId,
   getApplicationsByTesterId,
   getApplicationByProjectId,

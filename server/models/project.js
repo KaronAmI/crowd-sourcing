@@ -2,6 +2,8 @@ const db = require('../config/db.js')
 const projectModel = '../schema/projects.js'
 const CsDb = db.cs
 
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 const Project = CsDb.import(projectModel)
 
 const delProjectByProjectId = async (obj) => {
@@ -94,7 +96,6 @@ const updateProjectById = async (obj) => {
   }
 }
 const updateProjectAppsrcById = async ({projectId, appsrc, fileName}) => {
-  console.log(projectId, appsrc)
   await Project.update({
       appsrc: appsrc,
       fileName: fileName
@@ -131,7 +132,39 @@ const getProjectsByPublish = async () => {
     }
   })
 }
+const searchProjectsByKey = async ({keyWord}) => {
+  const byNames = await Project.findAll({
+    where: {
+      name: {
+        [Op.like]: keyWord
+      }
+    }
+  })
+  if (byNames.length) {
+    return byNames
+  } else {
+    const byOs = await Project.findAll({
+      where: {
+        os: {
+          [Op.like]: keyWord
+        }
+      }
+    })
+    if (byOs.length) {
+      return byOs
+    } else {
+      return await Project.findAll({
+        where: {
+          phoneName: {
+            [Op.like]: keyWord
+          }
+        }
+      })
+    }
+  }
+}
 module.exports = {
+  searchProjectsByKey,
   updateProjectAppsrcById,
   delProjectByProjectId,
   getProjectsByCustomerId,

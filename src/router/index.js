@@ -12,6 +12,7 @@ import publishProjects from '@/components/project/publish'
 import projectDetail from '@/components/project/detail'
 import applications from '@/components/application/index'
 import report from '@/components/report/index'
+import profile from '@/components/profile/index'
 
 Vue.use(Router)
 
@@ -53,6 +54,10 @@ const router = new Router({
         {
           path: 'report/:projectId',
           component: report
+        },
+        {
+          path: 'profile',
+          component: profile
         }
       ]
     },
@@ -74,13 +79,11 @@ router.beforeEach((to, from, next) => {
   const email = sessionStorage.getItem('cs-user-email')
   const msg = sessionStorage.getItem('cs-user-msg')
   const type = sessionStorage.getItem('cs-user-type')
-  const integral = sessionStorage.getItem('cs-user-integral')
   if (to.path === '/cs/login' || to.path === '/cs/register') {
     sessionStorage.setItem('cs-user-id', null)
     sessionStorage.setItem('cs-user-email', null)
     sessionStorage.setItem('cs-user-msg', null)
     sessionStorage.setItem('cs-user-type', null)
-    sessionStorage.setItem('cs-user-integral', null)
     next()
   } else {
     if (id) {
@@ -89,7 +92,6 @@ router.beforeEach((to, from, next) => {
       login.email = email
       login.msg = msg
       login.type = type
-      login.integral = integral
       store.dispatch('setState', {type: 'login', data: login})
       next()
     } else {

@@ -2,10 +2,8 @@ const user = require('../models/user.js')
 
 const getUsers = async function (ctx) {
   const id = ctx.params.id
-  const result = await user.getUsers(id)
-  ctx.body = result
+  ctx.body = await user.getUsers(id)
 }
-
 const getUserByEmail = async function (ctx) {
   const login = ctx.request.body
   const result = await user.getUserByEmail(login)
@@ -32,14 +30,21 @@ const getUserByEmail = async function (ctx) {
     }
   }
 }
-
 const addUser = async function (ctx) {
   const send = ctx.request.body
-  const result = await user.addUser(send)
-  ctx.body = result
+  ctx.body = await user.addUser(send)
 }
-
+const updateIntegralByUserId = async function (ctx) {
+  const send = ctx.request.body
+  ctx.body = await user.updateIntegralByUserId(send)
+}
+const getUserInfoByEmail = async function (ctx) {
+  const send = ctx.request.body
+  ctx.body = await user.getUserByEmail(send)
+}
 module.exports = {
+  getUserInfoByEmail,
+  updateIntegralByUserId,
   getUsers,
   getUserByEmail,
   addUser

@@ -68,10 +68,17 @@ const updateApplicationById = async function (ctx) {
   ctx.body = result
 }
 
+const updateApplicationBySettle = async function (ctx) {
+  const send = ctx.request.body
+  const result = await application.updateApplicationBySettle(send)
+  ctx.body = result
+}
+
 module.exports = {
   getApplicationsForTester,
   getApplicationsForProject,
   updateApplicationById,
+  updateApplicationBySettle,
   delApplication,
   addApplication
 }

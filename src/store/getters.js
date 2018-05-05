@@ -1,5 +1,8 @@
 export default {
   doneRegister: state => state.register,
+  doneGetUserInfo: state => state.getUserInfo,
+  doneSearchProjects: state => state.searchProjects,
+  doneUpdateIntegral: state => state.updateIntegral,
   doneLogin: state => state.login,
   doneAddDevice: state => state.addDevice,
   doneDeviceForTester: state => state.deviceForTester,
@@ -26,6 +29,7 @@ export default {
   doneDelDefect: state => state.delDefect,
   doneUpdateDefectById: state => state.updateDefectById,
   doneUpdateProjectAppsrcById: state => state.updateProjectAppsrcById,
+  doneUpdateApplicationBySettle: state => state.updateApplicationBySettle,
   doneGetDefects: state => state.getDefects,
   doneGetDefectsByReport: state => state.getDefectsByReport,
   doneGetDefectsBySettle: state => state.getDefectsBySettle,

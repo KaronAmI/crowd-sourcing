@@ -18,6 +18,9 @@
         <el-menu-item index="/cs/myApplications" v-if="isTester">
           <span slot="title">我的申请</span>
         </el-menu-item>
+        <el-menu-item index="/cs/profile">
+          <span slot="title">个人中心</span>
+        </el-menu-item>
       </el-menu>
     </el-aside>
     <el-main class="cs-main">

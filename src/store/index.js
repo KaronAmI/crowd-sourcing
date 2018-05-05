@@ -21,6 +21,7 @@ export default new Vuex.Store({
     project: '',
     projectsForCustomer: '',
     updateProject: '',
+    searchProjects: '',
     delProjectByProjectId: '',
     rewards: [],
     addReward: '',
@@ -38,7 +39,10 @@ export default new Vuex.Store({
     getDefectsByReport: '',
     updateDefectById: '',
     updateProjectAppsrcById: '',
-    getDefectsBySettle: ''
+    getDefectsBySettle: '',
+    updateIntegral: '',
+    getUserInfo: '',
+    updateApplicationBySettle: ''
   },
   mutations,
   actions,

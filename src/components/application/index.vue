@@ -19,6 +19,13 @@
           </template>
         </el-table-column>
         <el-table-column
+          label="项目状态"
+          width="120">
+          <template slot-scope="scope">
+            <el-tag type="primary">{{scope.row.projectStatus}}</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column
           label="测试时间"
           width="120">
           <template slot-scope="scope">
@@ -40,6 +47,7 @@
 </template>
 
 <script>
+import { formatApplicationsForProject } from '@/utils'
 export default {
   name: 'myApplication',
   mounted () {
@@ -50,7 +58,7 @@ export default {
       return this.$store.getters.doneLogin
     },
     applications () {
-      return this.$store.getters.doneGetApplicationsForTester || []
+      return formatApplicationsForProject(this.$store.getters.doneGetApplicationsForTester) || []
     },
     delApplication () {
       return this.$store.getters.doneDelApplication

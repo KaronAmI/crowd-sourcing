@@ -42,6 +42,10 @@
           <div class="name">是否审核：</div>
           <div class="value single">{{doneProject.isExamine}}</div>
         </div>
+        <div class="demand">
+          <div class="name">项目状态：</div>
+          <div class="value single projectStatus">{{projectStatus}}</div>
+        </div>
       </div>
 
       <div class="part">
@@ -88,6 +92,18 @@ export default {
     },
     doneAddApplication () {
       return this.$store.getters.doneAddApplication || []
+    },
+    projectStatus () {
+      const now = new Date().getTime()
+      const end = new Date(this.doneProject.end).getTime()
+      const start = new Date(this.doneProject.start).getTime()
+      if (now >= start && now <= end) {
+        return '进行中'
+      } if (now > end) {
+        return '已结束'
+      } else {
+        return '未开始'
+      }
     }
   },
   mounted () {

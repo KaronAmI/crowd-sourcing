@@ -46,8 +46,23 @@ const addUser = async function (user) {
     }
   }
 }
+const updateIntegralByUserId = async ({userId, integral}) => {
+  await User.update({
+      integral: integral
+    }, {
+      where: {
+        id: userId
+      }
+    }
+  )
+  return {
+    msg: '更新成功',
+    error: false
+  }
+}
 
 module.exports = {
+  updateIntegralByUserId,
   getUsers,
   getUserByEmail,
   getUserByTesterId,
