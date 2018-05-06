@@ -43,7 +43,8 @@ export default new Vuex.Store({
     updateIntegral: '',
     getUserInfo: '',
     updateApplicationBySettle: '',
-    news: []
+    news: [],
+    getNewsByUserId: ''
   },
   mutations,
   actions,

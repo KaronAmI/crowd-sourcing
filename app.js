@@ -2,11 +2,13 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
 const user = require('./server/actions/user.js')
-const userModel = require('./server/models/user')
+const userModel = require('./server/models/user.js')
 const device = require('./server/actions/device.js')
 const deviceModel = require('./server/models/device')
 const project = require('./server/actions/project.js')
 const reward = require('./server/actions/reward.js')
+const news = require('./server/actions/news.js')
+const newsModel = require('./server/models/news.js')
 const application = require('./server/actions/application.js')
 const defect = require('./server/actions/defect.js')
 const file = require('./server/actions/file.js')
@@ -70,58 +72,51 @@ router.post('/defect/delDefect', defect.delDefect)
 router.post('/defect/getDefectsByReport', defect.getDefectsByReport)
 router.post('/defect/getDefectsBySettle', defect.getDefectsBySettle)
 
+router.post('/news/addNews', news.addNews)
+router.post('/news/delNews', news.delNews)
+router.post('/news/getNewsByUserId', news.getNewsByUserId)
+
 router.post('/upload', file.upload)
 router.get('/download/:name', file.download)
 
 app.use(router.routes())
 
 const socketsInfo = {}
-const result = {}
-
-const findTopTwenty = async (user, socket) => {
+const findTopTwenty = (user, socket) => {
   socketsInfo[user.id] = socket.id
-  let users = await userModel.getUsers()
-  for (let id in socketsInfo) {
-    users.forEach((user, index) => {
-      if (user.dataValues.id == id) {
-        result[id] = socketsInfo[id]
-      }
-    })
-  }
-  return result
+  return socketsInfo
 }
 
 io.sockets.on('connection', (socket) => {
   let socketKeys = {}
   let socketCut = []
   socket.on('login', async (user) => {
-    socketKeys = await findTopTwenty(user, socket)
+    socketKeys = findTopTwenty(user, socket)
   })
+
   socket.on('publish', async (project) => {
-    for (let id in socketKeys) {
-      const obj = {}
-      obj[id] = socketKeys[id]
-      socketCut.push(obj)
-    }
+    const users = await userModel.getUsers()
     const num = project.testerNumber * 2
-    socketCut = socketCut.slice(0, num)
-    socketKeys = {}
-    for (let socket of socketCut) {
-      for (let id in socket) {
-        socketKeys[id] = socket[id]
-      }
-    }
-    for (let id in socketKeys) {
+    let index = 0
+    for (let user of users) {
+      const id = user.dataValues.id
       const send = {}
       send.testerId = id
       const devices = await deviceModel.getDeviceByTesterId(send)
       for (let d of devices) {
         if (d.os === project.os &&
           d.osVersion === project.osVersion &&
-          d.name === project.phoneName) {
+          d.name === project.phoneName && index < num) {
             const key = socketKeys[id]
-            const curSocket = io.sockets.sockets[key]
-            curSocket && curSocket.emit('projects', project)
+            if (key) {
+              const curSocket = io.sockets.sockets[key]
+              curSocket && curSocket.emit('projects', project)
+            }
+            const obj = {}
+            obj.userId = id
+            obj.content = JSON.stringify(project)
+            await newsModel.addNews(obj)
+            index += 1
           }
       }
     }

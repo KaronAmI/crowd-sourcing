@@ -8,20 +8,12 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    appsrc: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    fileName: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
     customerId: {
       type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    name: {
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     releaseTime: {
@@ -30,6 +22,22 @@ module.exports = function(sequelize, DataTypes) {
     },
     description: {
       type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    start: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    end: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    isExamine: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true
+    },
+    isPublish: {
+      type: DataTypes.INTEGER(1),
       allowNull: true
     },
     os: {
@@ -44,24 +52,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(50),
       allowNull: true
     },
-    start: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    end: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
     testerNumber: {
       type: DataTypes.INTEGER(11),
       allowNull: true
     },
-    isExamine: {
-      type: DataTypes.INTEGER(1),
+    appsrc: {
+      type: DataTypes.STRING(255),
       allowNull: true
     },
-    isPublish: {
-      type: DataTypes.INTEGER(1),
+    fileName: {
+      type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {

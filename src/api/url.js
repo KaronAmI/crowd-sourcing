@@ -107,6 +107,9 @@ export const findApi = (type) => {
     case 'getDefectsBySettle':
       url = `${host}/api/defect/getDefectsBySettle`
       break
+    case 'getNewsByUserId':
+      url = `${host}/api/news/getNewsByUserId`
+      break
   }
   return url
 }

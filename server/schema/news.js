@@ -1,26 +1,22 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('rewards', {
+  return sequelize.define('news', {
     id: {
       type: DataTypes.INTEGER(11).UNSIGNED,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    projectId: {
-      type: DataTypes.INTEGER(11),
+    content: {
+      type: DataTypes.JSON,
       allowNull: true
     },
-    grade: {
-      type: DataTypes.STRING(11),
-      allowNull: true
-    },
-    reward: {
+    userId: {
       type: DataTypes.INTEGER(11),
       allowNull: true
     }
   }, {
-    tableName: 'rewards'
+    tableName: 'news'
   });
 };

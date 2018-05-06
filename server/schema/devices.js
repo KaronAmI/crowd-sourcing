@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     testerId: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: true
     }
   }, {
     tableName: 'devices'

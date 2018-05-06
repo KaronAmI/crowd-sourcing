@@ -34,5 +34,6 @@ export default {
   doneGetDefects: state => state.getDefects,
   doneGetDefectsByReport: state => state.getDefectsByReport,
   doneGetDefectsBySettle: state => state.getDefectsBySettle,
+  doneGetNewsByUserId: state => state.getNewsByUserId,
   doneGetDefectsByCustomer: state => state.getDefectsByCustomer
 }

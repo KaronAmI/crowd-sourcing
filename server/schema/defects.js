@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    grade: {
+    status: {
       type: DataTypes.STRING(11),
       allowNull: true
     },
@@ -28,12 +28,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    status: {
+    isCommit: {
       type: DataTypes.INTEGER(1),
       allowNull: true
     },
-    isCommit: {
-      type: DataTypes.INTEGER(1),
+    grade: {
+      type: DataTypes.STRING(11),
       allowNull: true
     }
   }, {

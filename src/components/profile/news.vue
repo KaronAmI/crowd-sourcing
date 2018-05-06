@@ -81,6 +81,9 @@ export default {
     },
     doneAddApplication () {
       return this.$store.getters.doneAddApplication || []
+    },
+    getNews () {
+      return this.$store.getters.doneGetNewsByUserId || []
     }
   },
   mounted () {
@@ -104,7 +107,17 @@ export default {
   },
   methods: {
     async doFetch () {
+      await this.fetchNews()
       await this.fetchDevices()
+    },
+    async fetchNews () {
+      const user = {}
+      user.userId = this.login.id
+      await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getNewsByUserId', params: user})
+      for (let news of this.getNews) {
+        const project = JSON.parse(news.content)
+        await this.$store.dispatch('pushState', {type: 'news', data: project})
+      }
     },
     async apply ({id, isExamine, os, osVersion, phoneName}) {
       let isOk = false
