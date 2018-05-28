@@ -1,6 +1,6 @@
 <template>
   <el-card class="cs-card cs-card-preview" :body-style="{'padding': '0'}" v-if="news.length">
-    <div class="header">您的推送</div>
+    <div class="header">推送列表</div>
     <div class="part">
       <el-table
         :data="news"
@@ -116,7 +116,7 @@ export default {
       await this.$store.dispatch('fetchByMethod', {method: 'post', type: 'getNewsByUserId', params: user})
       for (let news of this.getNews) {
         const project = JSON.parse(news.content)
-        await this.$store.dispatch('pushState', {type: 'news', data: project})
+        await this.$store.dispatch('setState', {type: 'news', data: project})
       }
     },
     async apply ({id, isExamine, os, osVersion, phoneName}) {

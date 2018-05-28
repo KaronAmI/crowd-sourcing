@@ -3,9 +3,9 @@
     <div class="index-addNew">
       <el-button type="success" @click="addNew">添加新项目</el-button>
     </div>
-    <list></list>
     <add v-if="doneProject || doneIsNewProject"></add>
     <preview v-if="doneProject"></preview>
+    <list></list>
     <applications v-if="applications.length"></applications>
   </div>
 </template>

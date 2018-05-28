@@ -3,19 +3,21 @@
     <el-card class="cs-card cs-card-preview" :body-style="{'padding': '0'}">
       <div class="cs-breadcrumb" @click="goback()">返回</div>
     </el-card>
-    <simpledetail></simpledetail>
-    <listreport></listreport>
+    <div class="cs-report-detail">
+      <reportprojectdetail></reportprojectdetail>
+      <listreport></listreport>
+    </div>
   </div>
 </template>
 
 <script>
-import simpledetail from '@/components/project/simpleDetail.vue'
+import reportprojectdetail from '@/components/project/reportProjectDetail.vue'
 import listreport from '@/components/defect/listReport.vue'
 import router from '@/router'
 export default {
   name: 'report',
   components: {
-    simpledetail,
+    reportprojectdetail,
     listreport
   },
   methods: {

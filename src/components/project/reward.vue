@@ -2,7 +2,8 @@
   <section class="cs-reward">
     <section class="reward-notice">
       <div class="top">备注：</div>
-      <div>奖励用于给缺陷定级</div>
+      <p>1、奖励用于缺陷定级，S级为最高等级，A、B、C等级依次降低。</p>
+      <p>2、不同等级的奖励积分由您进行设置，最终系统会根据您设置的积分数进行结算，设置时请注意等级区分。</p>
     </section>
     <section class="reward-list">
       <div class="top">已添加奖励</div>
@@ -41,7 +42,7 @@
       </div>
       <div class="col">
         <div class="title">奖励：</div>
-        <el-input :disabled="isDisabled" class="input" placeholder="请输入密码" v-model="reward" clearable></el-input>
+        <el-input :disabled="isDisabled" class="input" placeholder="请输入积分数" v-model="reward" clearable></el-input>
       </div>
       <div class="col">
         <div class="title"></div>

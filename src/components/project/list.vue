@@ -1,6 +1,6 @@
 <template>
   <el-card class="cs-card cs-card-list" :body-style="{'padding': '0'}">
-    <div class="header">草稿箱项目列表</div>
+    <div class="header">我的项目</div>
     <div class="bd">
       <el-table
         :data="doneProjectsForCustomer"
@@ -38,8 +38,8 @@
             <el-button size="mini" type="success" :disabled="scope.row.isOutTime || (scope.row.isPublish ? true : false)" @click="publish(scope.row)">发布</el-button>
             <el-button size="mini" type="primary" :disabled="(scope.row.isPublish ? true : false)" @click="edit(scope.row)">编辑</el-button>
             <el-button size="mini" type="primary" :disabled="(scope.row.isPublish ? false : true)" @click="getApplications(scope.row)">申请情况</el-button>
-            <el-button size="mini" type="danger" @click="del(scope.row)">删除</el-button>
-            <router-link :to="`/cs/report/${scope.row.id}`" style="margin-left:10px;"><el-button size="mini" type="warning">查看测试报告</el-button></router-link>
+            <el-button size="mini" type="danger" :disabled="!scope.row.isOutTime" @click="del(scope.row)">删除</el-button>
+            <router-link :to="`/cs/report/${scope.row.id}`" v-if="scope.row.projectStatus === '已结束'" style="margin-left:10px;"><el-button size="mini" type="warning">查看测试报告</el-button></router-link>
           </template>
         </el-table-column>
       </el-table>

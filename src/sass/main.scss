@@ -313,3 +313,43 @@
     width: 400px;
   }
 }
+
+.reward-notice {
+  p {
+    line-height: 20px;
+    color: $textColor1;
+  }
+}
+
+.cs-report-detail {
+  padding: 0 0 40px;
+  background-color: #fff;
+  .top {
+    padding-top: 40px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    text-align: center;
+  }
+  .part {
+    margin: 0;
+    padding: 20px 40px 10px;
+  }
+  .grade {
+    position: relative;
+    padding-left: 50px;
+    .name {
+      display: block;
+      position: absolute;
+      float: left;
+      left: 0;
+    }
+    .num {
+      display: inline-block;
+      min-width: 20px;
+      padding-right: 6px;
+    }
+  }
+  .grade + .grade {
+    margin-top: 10px;
+  }
+}
